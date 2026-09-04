@@ -1,0 +1,6 @@
+format: jb-book
+root: intro                   # Nombre de tu archivo principal (ej: intro.md o 00_Indice.ipynb)
+chapters:
+  - file: capitulo_1          # Corresponde a capitulo_1.ipynb o capitulo_1.md
+  - file: capitulo_2          # Corresponde a capitulo_2.ipynb
+ 
