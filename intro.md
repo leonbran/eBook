@@ -1,4 +1,4 @@
-# Introducción al Modelamiento Matemático
+# Generalidades del curso
 
 <br>
 
