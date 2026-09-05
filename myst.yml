@@ -25,4 +25,4 @@ site:
   options:
     logo: logo_eBook2.jpg
     logo_text: Introducción al Modelamiento Matemático
-    hide_author_affiliations: true
+    
