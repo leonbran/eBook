@@ -1,19 +1,5 @@
-# Información general del libro
-title: "Introducción al modelamiento Matemático"
-author: "Leon Escobar-Diaz / Departamento de Matemáticas"
-logo: "Esquemamodelamiento.png" # Opcional: Nombre de una imagen en tu carpeta (ej: logo.png)
+title: Introducción al Modelamiento Matemático
+author: Leon Escobar-Diaz
 
-# Configuración de ejecución
 execute:
-  execute_notebooks: "off" # Utiliza los resultados y gráficos que ya guardaste en tus notebooks
-
-# Botones interactivos (Google Colab y GitHub)
-html:
-  use_repository_button: true
-  use_issues_button: false
-
-launch_buttons:
-  colab_url: "https://colab.research.google.com"
-  repository_url: "https://github.com/Leon Escobar-Diaz/eBook"
-  path_to_docs: ""
-  branch: "main"
+  execute_notebooks: auto
