@@ -450,7 +450,7 @@ Podemos representar esquemáticamente el funcionamiento de Colab de la siguiente
                     visualización
 ```
 
-Es importante distinguir varios conceptos que utilizaremos durante el curso.
+Es importante distinguir varios conceptos que utilizaremos durante el curso. 
 
 <br>
 
@@ -1720,28 +1720,13 @@ Una estrategia recomendable es:
 
 Esta práctica es particularmente importante cuando compartimos nuestros notebooks con otras personas.
 
-<br>
 
-# 14. Colab como herramienta transversal del curso
 
-A partir de este capítulo, Google Colab será nuestro principal entorno de experimentación computacional.
-
-Cada una de las unidades matemáticas del curso utilizará estas herramientas de manera progresiva.
-
-En **modelos por regresión**, utilizaremos Python, NumPy, Pandas, Matplotlib y SciPy para analizar datos, construir representaciones y estimar parámetros.
-
-En **modelos discretos de evolución**, utilizaremos funciones, estructuras de control y herramientas numéricas para estudiar sistemas que evolucionan paso a paso.
-
-En **modelos continuos**, utilizaremos herramientas numéricas para aproximar y visualizar soluciones de ecuaciones diferenciales.
-
-En **modelos estocásticos**, utilizaremos generación de números aleatorios, simulaciones y herramientas estadísticas para estudiar sistemas que incorporan incertidumbre.
-
-Por tanto, las herramientas computacionales no constituyen una unidad aislada del curso. Este capítulo proporciona las herramientas básicas que utilizaremos transversalmente en todas las unidades posteriores.
 
 
 <br><br>
 
-## 15. Ejercicios
+## 14. Ejercicios
 
 ### Ejercicio 1. Evaluación de una función
 
