@@ -1,4 +1,4 @@
-\# Introducción al Modelamiento Matemático
+# Introducción al Modelamiento Matemático
 
 
 
@@ -12,17 +12,17 @@ modelamiento matemático y algunas de sus aplicaciones.
 
 
 
-\## Contenido
+## Contenido
 
 
 
-\- Modelos matemáticos
+- Modelos matemáticos
 
-\- Ecuaciones diferenciales
+- Ecuaciones diferenciales
 
-\- Sistemas dinámicos
+- Sistemas dinámicos
 
-\- Métodos numéricos
+- Métodos numéricos
 
-\- Modelamiento computacional
+- Modelamiento computacional
 
