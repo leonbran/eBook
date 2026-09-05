@@ -1,4 +1,4 @@
-name: Build and Deploy Jupyter Book
+name: Deploy Jupyter Book
 
 on:
   push:
@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install Jupyter Book
         run: pip install jupyter-book
 
-      - name: Build Jupyter Book
-        run: jupyter-book build .
+      - name: Build book
+        run: jupyter book build --html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
