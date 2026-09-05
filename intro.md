@@ -1,6 +1,6 @@
 # Introducción al Modelamiento Matemático
 
-## Presentación
+<br>
 
 Las matemáticas permiten construir representaciones de fenómenos y sistemas que encontramos en la naturaleza, la ciencia, la ingeniería, la economía y la sociedad. El **modelamiento matemático** busca establecer conexiones entre estos fenómenos y las estructuras matemáticas que permiten describirlos, analizarlos y comprenderlos.
 
@@ -12,26 +12,8 @@ En este curso estudiaremos diferentes familias de modelos matemáticos y desarro
 
 <br>
 
-## Elementos de programación
 
-La **programación** será un componente transversal del curso. No se busca convertir el curso en una introducción independiente a la programación, sino utilizarla como una herramienta para el modelamiento matemático. Trabajaremos principalmente utilizando **Google Colab**, lo que permitirá ejecutar y modificar los ejemplos computacionales directamente desde el navegador, sin necesidad de instalar software adicional en el computador.
-
-A lo largo del curso desarrollaremos progresivamente habilidades para:
-
-- Implementar algoritmos.
-- Trabajar con vectores y matrices.
-- Manipular y visualizar datos.
-- Realizar ajustes de modelos.
-- Simular sistemas dinámicos.
-- Resolver ecuaciones diferenciales de manera numérica.
-- Generar y analizar realizaciones de modelos estocásticos.
-- Producir visualizaciones que permitan interpretar el comportamiento de los modelos.
-
-
-
-<br>
-
-## Objetivos
+## Objetivos del curso
 
 Al finalizar el curso, se espera que el estudiante pueda:
 
@@ -45,15 +27,30 @@ Al finalizar el curso, se espera que el estudiante pueda:
 - Evaluar las limitaciones y el alcance de un modelo.
 - Interpretar los resultados matemáticos en el contexto del fenómeno estudiado.
 
-<br>
+<br><br>
+
+
 
 ## Estructura del curso
 
 El curso está organizado en cinco unidades. Estas unidades presentan una progresión desde la construcción básica de modelos hasta la incorporación de dinámica e incertidumbre.
 
+
 <br>
 
-### Unidad 1. Introducción al modelamiento matemático
+### Unidad 1. Elementos de programación
+
+Se introducen las herramientas computacionales necesarias para implementar, explorar y analizar modelos matemáticos. Mediante **Python** y **Google Colab**, se desarrollan habilidades básicas para realizar cálculos numéricos, trabajar con datos, visualizar resultados y construir algoritmos. La programación se concibe como una herramienta transversal que permite experimentar con los modelos, analizar su comportamiento y contrastar los resultados obtenidos.
+
+> **¿Cómo podemos utilizar un computador para construir, explorar y comprender un modelo matemático?**
+
+
+
+
+
+<br>
+
+### Unidad 2. Introducción al modelamiento matemático
 
 Comenzaremos estudiando qué es un modelo matemático y cómo se construye. Analizaremos el papel de las variables, los parámetros, los supuestos y las escalas, así como los procesos de calibración y validación.
 
@@ -63,7 +60,7 @@ La pregunta fundamental de esta unidad será:
 
 <br>
 
-### Unidad 2. Modelos por regresión
+### Unidad 3. Modelos por regresión
 
 En esta unidad estudiaremos modelos construidos a partir de datos. Introduciremos la regresión lineal y diferentes extensiones, utilizando herramientas de optimización y mínimos cuadrados para estimar los parámetros de un modelo.
 
@@ -75,7 +72,7 @@ La pregunta central será:
 
 <br>
 
-### Unidad 3. Modelos discretos
+### Unidad 4. Modelos discretos
 
 Muchos fenómenos involucran sistemas cuyo estado cambia con el tiempo. Cuando consideramos el tiempo como una variable discreta, podemos describir esta evolución mediante **ecuaciones en diferencias**.
 
@@ -87,7 +84,7 @@ La pregunta que guiará esta unidad será:
 
 <br>
 
-### Unidad 4. Modelos continuos
+### Unidad 5. Modelos continuos
 
 En esta unidad pasaremos de una descripción discreta del tiempo a una descripción continua. Las **ecuaciones diferenciales ordinarias** proporcionan un lenguaje natural para modelar sistemas en los que las tasas de cambio determinan su evolución.
 
@@ -99,7 +96,7 @@ La pregunta central será:
 
 <br>
 
-### Unidad 5. Modelos estocásticos
+### Unidad 6. Modelos estocásticos
 
 En muchos fenómenos existe incertidumbre inherente o información que no podemos conocer con exactitud. En estos casos, los modelos deterministas pueden resultar insuficientes y es necesario incorporar elementos aleatorios.
 
@@ -109,15 +106,14 @@ La pregunta fundamental será:
 
 > **¿Cómo incorporamos la incertidumbre en un modelo matemático?**
 
-<br>
+<br><br>
 
-<br>
 
-## Sobre este libro
 
-Este libro acompaña el desarrollo del curso y combina conceptos matemáticos, ejemplos, experimentos computacionales y ejercicios. Los ejemplos computacionales pueden ejecutarse y modificarse para explorar directamente el comportamiento de los modelos.
 
-La intención no es solamente presentar modelos terminados, sino mostrar **cómo se construyen, cómo se analizan y qué podemos aprender de ellos**.
+## Sobre estas notas de clase
+
+Estas notas  acompaña el desarrollo del curso y combina conceptos matemáticos, ejemplos, experimentos computacionales y ejercicios. Los ejemplos computacionales pueden ejecutarse y modificarse para explorar directamente el comportamiento de los modelos. La intención no es solamente presentar modelos terminados, sino mostrar **cómo se construyen, cómo se analizan y qué podemos aprender de ellos**.
 
 > **Modelar es simplificar para comprender.**
 >
