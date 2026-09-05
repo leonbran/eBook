@@ -1,0 +1,13 @@
+version: 1
+
+project:
+  title: Introducción al Modelamiento Matemático
+  authors:
+    - Leon Escobar-Diaz
+
+  toc:
+    - file: intro.md
+    - file: chapters/01-introduccion.md
+
+site:
+  template: book-theme
