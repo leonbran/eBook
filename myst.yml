@@ -5,10 +5,11 @@ project:
 
   authors:
   - name: Leon Escobar-Diaz
+    email: leon.escobar@correounivalle.edu.co   
     affiliations:
-       - institution: Universidad del Valle
-       - department: Departamento de Matemáticas
-    url: https://tuuniversidad.edu
+       - name: Universidad del Valle
+         department: Departamento de Matemáticas
+         url: https://matematicas.univalle.edu.co
         
   toc:
     - file: intro.md
