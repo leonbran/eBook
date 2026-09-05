@@ -2,7 +2,7 @@ version: 1
 
 project:
   title: Introducción al Modelamiento Matemático
-   authors:
+  authors:
     - name: Leon Escobar-Diaz
       note: Profesor Asociado
       affiliations:
