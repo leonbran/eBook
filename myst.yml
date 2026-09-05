@@ -5,8 +5,9 @@ project:
 
   authors:
   - name: Leon Escobar-Diaz
-    affiliations: Universidad del Valle
-    department: Departamento de Matemáticas
+    affiliations:
+       - institution: Universidad del Valle
+       - department: Departamento de Matemáticas
     url: https://tuuniversidad.edu
         
   toc:
