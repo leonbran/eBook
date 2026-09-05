@@ -5,15 +5,13 @@ project:
 
   authors:
     - name: Leon Escobar-Diaz
-      url: https://tu-sitio-web.com
-      email: tu_correo@universidad.edu.co
-      affiliations:
-        - mi-depto  # Hace referencia a la ID definida abajo
-
-  affiliations:
-    - id: mi-depto
-      name: Departamento de Matemáticas, Universidad del Valle
-      url: https://matematicas.univalle.edu.co/
+      url: https://sites.google.com/view/leonescobar
+      email: leon.escobar@correounivalle.edu.co
+      affiliations:        
+        - id: mi-depto
+          # Usar institution en lugar de name evita la etiqueta en línea en algunas plantillas
+          institution: Departamento de Matemáticas, Univalle
+          url: https://www.universidad.edu.co
         
   toc:
     - file: intro.md
@@ -23,4 +21,5 @@ site:
   template: book-theme
   options:
     logo: logo_eBook2.jpg
-    logo_text: Introducción al Modelamiento Matemático
+    logo_text: Introducción al Modelamiento 
+    hide_author_affiliations: true
