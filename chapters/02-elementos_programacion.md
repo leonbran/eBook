@@ -919,21 +919,16 @@ Esta forma de representar funciones matemáticas será utilizada constantemente 
 
 Los modelos matemáticos y los algoritmos computacionales frecuentemente requieren repetir operaciones.
 
-Python proporciona diferentes estructuras para controlar la ejecución de un programa.
+Python proporciona diferentes estructuras para controlar la ejecución de un programa. En muchos problemas matemáticos necesitamos realizar una misma operación varias veces. En programación, estas estructuras se conocen como **ciclos** o **bucles**.
 
-
-## 2.6 Ciclos: repetir instrucciones
-
-En muchos problemas matemáticos necesitamos realizar una misma operación varias veces. En programación, estas estructuras se conocen como **ciclos** o **bucles**.
-
-En Python existen dos ciclos fundamentales: `for` y `while`.
+En Python existen dos ciclos fundamentales:
 
 - `for`: se utiliza cuando conocemos el conjunto de valores o el número de iteraciones.
 - `while`: se utiliza cuando la repetición depende de una condición.
 
 <br>
 
-### 2.6.1 El ciclo `for`
+### 8.1 El ciclo `for`
 
 El ciclo `for` permite repetir instrucciones para cada elemento de una secuencia.
 
@@ -957,9 +952,11 @@ INICIO
     Mostrar suma
 
 FIN
+```
 
 En Python:
 
+```python
 n = 10
 suma = 0
 
@@ -967,36 +964,46 @@ for i in range(1, n + 1):
     suma = suma + i
 
 print(suma)
+```
 
-La variable i toma sucesivamente los valores $1,2,\ldots,n$.
+La variable `i` toma sucesivamente los valores $1,2,\ldots,n$.
 
-Los ciclos for también permiten implementar reglas de evolución. Por ejemplo,
+Los ciclos `for` también permiten implementar reglas de evolución. Por ejemplo,
 
-$$ x_{n+1}=\frac{1}{2}x_n+1, \qquad x_0=0. $$
+$$
+x_{n+1}=\frac{1}{2}x_n+1,
+\qquad x_0=0.
+$$
+
+```python
 x = 0
 
 for n in range(10):
     x = 0.5 * x + 1
     print(x)
+```
 
 Cada iteración corresponde a un paso en la evolución del sistema.
 
 <br>
 
-2.6.2 El ciclo while
+### 8.2 El ciclo `while`
 
-El ciclo while repite instrucciones mientras una condición sea verdadera.
+El ciclo `while` repite instrucciones mientras una condición sea verdadera.
 
 Por ejemplo:
 
+```python
 n = 1
 
 while n <= 10:
     print(n)
     n = n + 1
+```
 
 El algoritmo correspondiente es:
 
+```text
 INICIO
 
     n ← 1
@@ -1006,45 +1013,61 @@ INICIO
         n ← n + 1
 
 FIN
+```
 
-A diferencia del for, el número de iteraciones no tiene que conocerse previamente.
+A diferencia del `for`, el número de iteraciones no tiene que conocerse previamente.
 
 <br>
-2.6.3 for o while?
+
+### 8.3 `for` o `while`?
 
 Podemos establecer como regla práctica:
 
-for: repetir para un conjunto de valores o un número determinado de iteraciones.
+> **`for`: repetir para un conjunto de valores o un número determinado de iteraciones.**
+>
+> **`while`: repetir mientras se cumpla una condición.**
 
-while: repetir mientras se cumpla una condición.
+Por ejemplo, un `for` es apropiado cuando queremos realizar exactamente 100 iteraciones:
 
-Por ejemplo, un for es apropiado cuando queremos realizar exactamente 100 iteraciones:
-
+```python
 for n in range(100):
     # instrucciones
+```
 
-Mientras que un while es apropiado cuando queremos continuar hasta alcanzar una determinada condición:
+Mientras que un `while` es apropiado cuando queremos continuar hasta alcanzar una determinada condición:
 
+```python
 while error > tolerancia:
     # actualizar aproximación
     # calcular nuevo error
+```
 
-Esta segunda situación es especialmente frecuente en los métodos iterativos.
+Esta segunda situación es especialmente frecuente en los **métodos iterativos**.
 
 <br>
 
-2.6.4 Ciclos y métodos iterativos
+### 8.4 Ciclos y métodos iterativos
 
 Supongamos que queremos aproximar $\sqrt{2}$ mediante
 
-$$ x_{n+1} = \frac{1}{2} \left( x_n+\frac{2}{x_n} \right). $$
+$$
+x_{n+1}
+=
+\frac{1}{2}
+\left(
+x_n+\frac{2}{x_n}
+\right).
+$$
 
 Podemos detener el proceso cuando
 
-$$ |x_n^2-2|<\varepsilon. $$
+$$
+|x_n^2-2|<\varepsilon.
+$$
 
 En Python:
 
+```python
 x = 1.0
 tolerancia = 1e-8
 
@@ -1052,64 +1075,44 @@ while abs(x**2 - 2) > tolerancia:
     x = 0.5 * (x + 2/x)
 
 print(x)
+```
 
 Aquí el ciclo continúa hasta que se alcanza la precisión deseada. Este tipo de algoritmo será importante posteriormente en los métodos numéricos y en el modelamiento matemático.
 
 <br>
-2.6.5 Cuidado con los ciclos infinitos
 
-Un ciclo while debe modificar las variables involucradas en su condición para que eventualmente pueda terminar.
+### 8.5 Cuidado con los ciclos infinitos
+
+Un ciclo `while` debe modificar las variables involucradas en su condición para que eventualmente pueda terminar.
 
 Por ejemplo, el siguiente ciclo nunca termina:
 
+```python
 n = 1
 
 while n <= 10:
     print(n)
+```
 
-La condición siempre es verdadera porque n nunca cambia.
+La condición siempre es verdadera porque `n` nunca cambia.
 
 Una versión correcta es:
 
+```python
 n = 1
 
 while n <= 10:
     print(n)
     n = n + 1
+```
 
-Por tanto, al diseñar un algoritmo iterativo debemos preguntarnos no solamente qué se repite, sino también qué hace que el ciclo termine.
+Por tanto, al diseñar un algoritmo iterativo debemos preguntarnos no solamente **qué se repite**, sino también **qué hace que el ciclo termine**.
 
 <br>
-2.6.6 Ciclos en el modelamiento matemático
-
-Los ciclos permiten convertir una regla matemática en un procedimiento computacional. Por ejemplo,
-
-$$ x_{n+1}=f(x_n) $$
-
-puede implementarse mediante un ciclo que genere sucesivamente
-
-$$ x_0,x_1,\ldots,x_N. $$
-
-La conexión fundamental es:
-
-Modelo matemático
-        ↓
-Regla de evolución
-        ↓
-Algoritmo iterativo
-        ↓
-Ciclo for / while
-        ↓
-Programa
-        ↓
-Simulación
-
-Esta relación entre modelo, algoritmo, ciclo y simulación será recurrente a lo largo del curso.
 
 
 
-
-### 8.1 Condiciones
+### 8.6 Condicionales
 
 También podemos hacer que el programa tome decisiones utilizando `if`.
 
@@ -1139,7 +1142,7 @@ Las estructuras condicionales serán útiles cuando construyamos algoritmos que 
 
 <br>
 
-### 8.2 Listas
+### 8.7 Listas
 
 Las listas permiten almacenar varios objetos.
 
@@ -1170,6 +1173,9 @@ valores.append(6)
 Las listas son útiles para almacenar resultados obtenidos durante una simulación o un cálculo.
 
 <br>
+
+
+
 
 ## 9. NumPy: cálculo numérico
 
