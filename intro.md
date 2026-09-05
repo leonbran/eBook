@@ -1,6 +1,28 @@
-# Bienvenidos al Curso
+\# Introducción al Modelamiento Matemático
 
-Este es el libro virtual e interactivo para la asignatura.
 
-Desde el menú lateral puedes acceder a todos los temas.
+
+Bienvenidos a este libro.
+
+
+
+En este texto estudiaremos los conceptos fundamentales del
+
+modelamiento matemático y algunas de sus aplicaciones.
+
+
+
+\## Contenido
+
+
+
+\- Modelos matemáticos
+
+\- Ecuaciones diferenciales
+
+\- Sistemas dinámicos
+
+\- Métodos numéricos
+
+\- Modelamiento computacional
 
