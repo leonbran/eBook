@@ -12,5 +12,5 @@ project:
 site:
   template: book-theme
   options:
-    logo: logo_eBook2.jpg
+    logo: logo_eBook2.png
     logo_text: Introducción al Modelamiento Matemático
