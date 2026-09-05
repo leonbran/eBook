@@ -2,9 +2,12 @@ version: 1
 
 project:
   title: Introducción al Modelamiento Matemático
-  author: Leon Escobar-Diaz
-  institution: Universidad del Valle
-  website: "https://tuuniversidad.edu"
+
+  authors:
+  - name: Leon Escobar-Diaz
+    affiliations:
+      - name: Universidad del Valle
+    url: https://tuuniversidad.edu
         
   toc:
     - file: intro.md
