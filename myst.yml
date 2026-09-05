@@ -18,6 +18,7 @@ project:
   toc:
     - file: intro.md
     - file: chapters/01-introduccion.md
+    - file: chapters/02-elementos_programacion to 02-elementos_programacion.md
 
 site:
   template: book-theme
