@@ -5,13 +5,15 @@ project:
 
   authors:
     - name: Leon Escobar-Diaz
-      #url: https://sites.google.com/view/leonescobar
+      url: https://sites.google.com/view/leonescobar
       email: leon.escobar@correounivalle.edu.co
-      affiliations:        
-        - id: mi-depto
-          # Usar institution en lugar de name evita la etiqueta en línea en algunas plantillas
-          institution: Departamento de Matemáticas, Univalle
-          url: https://matematicas.univalle.edu.co/
+      affiliations:
+        - mi-depto
+
+  affiliations:
+    - id: mi-depto
+      institution: Departamento de Matemáticas, Univalle
+      url: https://matematicas.univalle.edu.co/
         
   toc:
     - file: intro.md
