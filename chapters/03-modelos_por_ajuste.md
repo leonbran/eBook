@@ -1841,84 +1841,9 @@ Por ejemplo, si medimos experimentalmente la temperatura de un sistema, es razon
 
 En cambio, si tenemos valores exactos de una función matemática evaluada en determinados puntos, la interpolación puede ser apropiada.
 
-<br>
+<br><br>
 
-## 17. Construcción de modelos por tramos
-
-Los modelos por tramos constituyen una estrategia especialmente útil cuando el fenómeno presenta comportamientos diferentes en distintas regiones.
-
-En general, podemos escribir
-
-$$
-f(x)=
-\begin{cases}
-f_1(x),&x\in I_1,\\
-f_2(x),&x\in I_2,\\
-\vdots\\
-f_k(x),&x\in I_k.
-\end{cases}
-$$
-
-Cada función puede construirse utilizando una técnica diferente.
-
-Por ejemplo:
-
-$$
-f_1(x)=a_1+b_1x,
-$$
-
-y
-
-$$
-f_2(x)=a_2+b_2x.
-$$
-
-Podemos entonces utilizar regresión lineal para determinar los parámetros de cada tramo.
-
-Esta estrategia es muy útil cuando los datos presentan cambios de comportamiento, puntos de transición o diferentes regímenes.
-
-El ejemplo de la población bacteriana mostrado anteriormente puede interpretarse como un caso sencillo de este principio.
-
-<br>
-
-## 18. La idea central: de los datos al modelo
-
-A lo largo de este capítulo hemos encontrado varias maneras de construir funciones a partir de datos.
-
-Podemos:
-
-1. ajustar una recta;
-2. ajustar un polinomio;
-3. transformar los datos para obtener modelos exponenciales;
-4. transformar los datos para obtener leyes de potencia;
-5. dividir el dominio y construir modelos por tramos;
-6. construir una función que pase exactamente por los datos mediante interpolación.
-
-Todas estas estrategias tienen algo en común:
-
-$$
-\boxed{
-\text{datos}
-\longrightarrow
-\text{estructura matemática}
-\longrightarrow
-\text{modelo}.
-}
-$$
-
-La elección del modelo depende del problema y de la información disponible.
-
-No debemos comenzar preguntando únicamente:
-
-> ¿Qué fórmula puedo ajustar?
-
-La pregunta más importante es:
-
-> **¿Qué estructura matemática representa razonablemente el fenómeno que estoy estudiando?**
-
-<br>
-
-## 19. Ideas principales
+## 17. Ideas principales
 
 Al finalizar este capítulo debemos recordar las siguientes ideas:
 
@@ -1986,7 +1911,7 @@ $$
 
 <br>
 
-## 20. Ejercicios
+## 18. Ejercicios
 
 ### Ejercicio 1. Regresión lineal
 
