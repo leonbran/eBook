@@ -25,5 +25,5 @@ site:
   options:
     logo: logo_eBook2.jpg
     logo_text: Introducción al Modelamiento Matemático
-    toc_maxdepth: 1
+
     
