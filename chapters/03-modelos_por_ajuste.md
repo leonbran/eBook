@@ -1138,9 +1138,7 @@ puntos con valores $x_i$ diferentes.
 
 Definimos los polinomios de Lagrange
 
-$$
-L_i(x)
-=
+$$L_i(x)=
 \prod_{\substack{j=1\\j\neq i}}^n
 \frac{x-x_j}{x_i-x_j}.
 $$
