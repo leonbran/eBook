@@ -19,6 +19,7 @@ project:
     - file: intro.md
     - file: chapters/01-introduccion.md
     - file: chapters/02-elementos_programacion.md
+    - file: chapters/03-modelos_por_ajuste.md
 
 site:
   template: book-theme
