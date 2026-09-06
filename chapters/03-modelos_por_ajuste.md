@@ -1,4 +1,4 @@
-# Construcción de modelos por ajuste a datos
+# Modelos por ajuste a datos
 
 En muchos problemas de modelamiento matemático conocemos un fenómeno, realizamos observaciones o disponemos de datos experimentales, pero no conocemos de antemano la relación matemática que existe entre las variables involucradas.
 
@@ -246,8 +246,7 @@ $$
 Partimos de
 
 $$
-E(m,b)
-=
+E(m,b) =
 \sum_{i=1}^{n}
 [y_i-(mx_i+b)]^2.
 $$
@@ -263,8 +262,7 @@ $$
 Calculamos primero la derivada respecto a $m$:
 
 $$
-\frac{\partial E}{\partial m}
-=
+\frac{\partial E}{\partial m} =
 -2
 \sum_{i=1}^{n}
 x_i[y_i-(mx_i+b)].
@@ -281,10 +279,8 @@ $$
 Desarrollando,
 
 $$
-\sum_{i=1}^{n}x_i y_i
--
-m\sum_{i=1}^{n}x_i^2
--
+\sum_{i=1}^{n}x_i y_i -
+m\sum_{i=1}^{n}x_i^2 -
 b\sum_{i=1}^{n}x_i
 =0.
 $$
@@ -294,16 +290,14 @@ De manera equivalente,
 $$
 m\sum_{i=1}^{n}x_i^2
 +
-b\sum_{i=1}^{n}x_i
-=
+b\sum_{i=1}^{n}x_i =
 \sum_{i=1}^{n}x_i y_i.
 $$
 
 Ahora derivamos respecto a $b$:
 
 $$
-\frac{\partial E}{\partial b}
-=
+\frac{\partial E}{\partial b}=
 -2
 \sum_{i=1}^{n}
 [y_i-(mx_i+b)].
@@ -1190,39 +1184,32 @@ $$
 Tenemos
 
 $$
-L_1(x)
-=
+L_1(x) =
 \frac{(x-1)(x-2)}
-{(0-1)(0-2)}
-=
+{(0-1)(0-2)} =
 \frac{(x-1)(x-2)}{2},
 $$
 
 $$
-L_2(x)
-=
+L_2(x) =
 \frac{(x-0)(x-2)}
-{(1-0)(1-2)}
-=
+{(1-0)(1-2)} =
 -x(x-2),
 $$
 
 y
 
 $$
-L_3(x)
-=
+L_3(x) =
 \frac{(x-0)(x-1)}
-{(2-0)(2-1)}
-=
+{(2-0)(2-1)} =
 \frac{x(x-1)}{2}.
 $$
 
 Por tanto,
 
 $$
-p(x)
-=
+p(x) =
 1L_1(x)+3L_2(x)+2L_3(x).
 $$
 
@@ -1230,8 +1217,7 @@ Al simplificar,
 
 $$
 \boxed{
-p(x)
-=
+p(x) =
 -\frac{3}{2}x^2
 +\frac{7}{2}x
 +1.
