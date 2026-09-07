@@ -35,27 +35,14 @@ Podemos utilizarlo para:
 * comparar diferentes escenarios;
 * explorar el efecto de modificar parámetros.
 
-Esto transforma el computador en una especie de **laboratorio matemático**.
-
-Podemos formular una pregunta, diseñar un experimento computacional, observar los resultados y modificar nuestras hipótesis o nuestro modelo.
-
-En este curso utilizaremos esta perspectiva de manera sistemática.
-
-<br>
-
-
-
-
-
-
-
+Esto transforma el computador en una especie de **laboratorio matemático**. Podemos formular una pregunta, diseñar un experimento computacional, observar los resultados y modificar nuestras hipótesis o nuestro modelo.
 En este curso utilizaremos esta perspectiva de manera sistemática.
 
 <br><br>
 
 
 
-##2. Algoritmos: del procedimiento matemático al computador
+## 2. Algoritmos: del procedimiento matemático al computador
 
 Cuando resolvemos un problema matemático, generalmente seguimos una serie de pasos para obtener un resultado. Por ejemplo, para calcular el promedio de un conjunto de números debemos sumar sus elementos y dividir el resultado entre la cantidad de elementos.
 
@@ -90,7 +77,7 @@ Esta secuencia constituye un algoritmo para calcular el promedio.
 
 <br>
 
-###2.1 Características de un algoritmo
+### 2.1 Características de un algoritmo
 
 Un algoritmo debe describir un procedimiento de manera suficientemente precisa para que pueda ser ejecutado sin ambigüedades.
 
