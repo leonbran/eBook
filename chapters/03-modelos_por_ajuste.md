@@ -107,8 +107,7 @@ Una forma natural de medir qué tan bien se ajusta una recta a los datos consist
 
 $$
 E(m,b) =
-\sum_{i=1}^{n}
-\left[y_i-(mx_i+b)\right]^2.
+\sum_{i=1}^{n} ( y_i-(mx_i+b) )^2.
 $$
 
 La función $E(m,b)$ se denomina **función de error** o **suma de cuadrados de los residuos**.
@@ -455,8 +454,7 @@ $$
 Se define como
 
 $$
-R^2
-=
+R^2 =
 1-
 \frac{
 \displaystyle\sum_{i=1}^{n}(y_i-\widehat{y}_i)^2
@@ -502,8 +500,7 @@ Este modelo no es una función lineal de $x$. Sin embargo, es lineal respecto a 
 Podemos escribirlo como
 
 $$
-y
-=
+y =
 a\,x^2+b\,x+c.
 $$
 
