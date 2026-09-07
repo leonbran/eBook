@@ -1,4 +1,4 @@
-# Modelos estocásticos de cadenas de Markov
+# Modelos de Markov
 
 Los modelos probabilísticos son representaciones matemáticas utilizadas para describir y analizar fenómenos o sistemas que presentan incertidumbre o variabilidad. A diferencia de los modelos deterministas, en los que las condiciones iniciales y los parámetros determinan completamente la evolución del sistema, los modelos probabilísticos incorporan explícitamente el azar.
 
