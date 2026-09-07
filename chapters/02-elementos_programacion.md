@@ -1,4 +1,4 @@
-# Herramientas computacionales para el modelamiento matemático
+# Herramientas computacionales
 
 En el modelamiento matemático, las herramientas computacionales cumplen un papel fundamental. Una vez construido un modelo, frecuentemente necesitamos realizar cálculos, visualizar funciones y datos, resolver ecuaciones, estimar parámetros o realizar simulaciones.
 
