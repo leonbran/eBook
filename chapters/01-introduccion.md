@@ -1,6 +1,4 @@
-```{tableofcontents}
-:maxdepth: 1
-```
+
 
 # Introducción
 
