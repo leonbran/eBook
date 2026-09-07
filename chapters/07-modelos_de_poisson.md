@@ -2,197 +2,96 @@
 
 <br><br>
 
-## Introducción
+## 1. Introducción
 
-En el capítulo anterior estudiamos los modelos de Markov, una clase de modelos estocásticos en los cuales la evolución de un sistema se describe mediante transiciones aleatorias entre estados. En este capítulo estudiaremos otra clase de modelos estocásticos, particularmente apropiada para describir la **ocurrencia aleatoria de eventos a lo largo del tiempo**.
+En el capítulo anterior estudiamos los modelos de Markov, una clase de modelos estocásticos en los cuales la evolución de un sistema se describe mediante transiciones aleatorias entre diferentes estados. En este capítulo estudiaremos otra clase de modelos estocásticos, particularmente apropiada para describir la **ocurrencia aleatoria de eventos**.
 
-Muchos fenómenos pueden describirse mediante el conteo del número de veces que ocurre determinado evento durante un intervalo de tiempo o en una región del espacio. Algunos ejemplos son:
+En numerosos fenómenos de interés no estamos interesados principalmente en determinar el estado de un sistema, sino en contar cuántas veces ocurre determinado evento durante un intervalo de tiempo o dentro de una región del espacio.
+
+Por ejemplo:
 
 * el número de clientes que llegan a un establecimiento durante una hora;
 * el número de llamadas que recibe una central telefónica;
 * el número de fallas de un componente durante un período de operación;
-* el número de defectos encontrados en una longitud determinada de material;
+* el número de defectos encontrados en una determinada longitud de material;
 * el número de mutaciones observadas en una secuencia genética;
 * el número de partículas detectadas por un instrumento durante un intervalo de tiempo.
 
-En situaciones de este tipo, el resultado de una observación no tiene por qué estar completamente determinado por las condiciones iniciales. En lugar de predecir un único número de eventos, podemos describir la **probabilidad de obtener cada posible número de eventos**.
+En situaciones de este tipo, el número de eventos observados no está completamente determinado por las condiciones iniciales del sistema. En consecuencia, en lugar de predecir un único valor, podemos describir las probabilidades asociadas con los diferentes resultados posibles.
 
-La distribución de Poisson proporciona uno de los modelos más sencillos y útiles para este propósito.
+La **distribución de Poisson** proporciona uno de los modelos más sencillos para representar este tipo de situaciones.
 
-El objetivo de este capítulo es construir este modelo progresivamente. Comenzaremos recordando las variables aleatorias discretas y la distribución binomial, para posteriormente introducir la distribución de Poisson. Luego estudiaremos el proceso de Poisson, la estimación de su parámetro y algunas técnicas básicas de simulación computacional.
+El propósito de este capítulo no es desarrollar una teoría general de las distribuciones de probabilidad, sino introducir una herramienta de modelamiento que permita describir, analizar, simular y estimar fenómenos caracterizados por la ocurrencia de eventos.
 
-La idea central será pasar de una descripción basada en datos y tasas de ocurrencia a un modelo probabilístico:
+El recorrido que seguiremos será
 
 $$
 \boxed{
-\text{fenómeno}
+\text{conteo de eventos}
 \longrightarrow
-\text{eventos}
+\text{distribución de Poisson}
 \longrightarrow
-\text{tasa}
+\text{proceso de Poisson}
 \longrightarrow
-\text{modelo de Poisson}
+\text{estimación}
+\longrightarrow
+\text{simulación}
 }
 $$
 
-<br><br>
-
-## Variables aleatorias discretas
-
-Una **variable aleatoria** es una función que asigna un número real a cada resultado posible de un experimento aleatorio.
-
-En este capítulo nos interesan principalmente las **variables aleatorias discretas**, es decir, aquellas que pueden tomar un conjunto finito o numerable de valores.
-
-Por ejemplo, si observamos el número de clientes que llegan a una cafetería durante una hora, podemos definir
-
-$$
-X=\text{número de clientes que llegan durante una hora}.
-$$
-
-Entonces $X$ puede tomar valores
-
-$$
-X=0,1,2,3,\ldots
-$$
-
-pero no valores como $2.37$ clientes.
-
-De manera similar, si contamos el número de fallas de una máquina durante un día,
-
-$$
-X=\text{número de fallas durante un día},
-$$
-
-entonces nuevamente $X$ es una variable aleatoria discreta.
-
-### Función de masa de probabilidad
-
-La distribución de una variable aleatoria discreta puede describirse mediante su **función de masa de probabilidad** (PMF, por sus siglas en inglés):
-
-$$
-p_X(x)=P(X=x).
-$$
-
-Esta función asigna a cada valor posible de $X$ la probabilidad de que la variable tome dicho valor.
-
-Toda función de masa de probabilidad debe satisfacer
-
-$$
-p_X(x)\geq 0
-$$
-
-para todo $x$, y
-
-$$
-\sum_x p_X(x)=1.
-$$
-
-Por tanto, la distribución de una variable aleatoria discreta puede interpretarse como una forma de repartir toda la probabilidad entre los diferentes resultados posibles.
-
-### Ejemplo: suma de dos dados
-
-Consideremos el lanzamiento de dos dados equilibrados y definamos
-
-$$
-X=\text{suma de los resultados obtenidos}.
-$$
-
-Los valores posibles son
-
-$$
-X\in\{2,3,\ldots,12\}.
-$$
-
-Existen $36$ resultados elementales igualmente probables. Sin embargo, no todas las sumas tienen la misma probabilidad.
-
-Por ejemplo, la suma $2$ solamente puede obtenerse mediante
-
-$$
-(1,1),
-$$
-
-mientras que la suma $7$ puede obtenerse mediante
-
-$$
-(1,6),(2,5),(3,4),(4,3),(5,2),(6,1).
-$$
-
-Por tanto,
-
-$$
-P(X=2)=\frac{1}{36},
-$$
-
-mientras que
-
-$$
-P(X=7)=\frac{6}{36}=\frac16.
-$$
-
-La función de masa completa es
-
-$$
-p_X(x)=
-\frac{1}{36}
-(1,2,3,4,5,6,5,4,3,2,1),
-$$
-
-para $x=2,\ldots,12$, respectivamente.
-
-Podemos visualizar esta distribución utilizando Python.
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-valores = np.arange(2, 13)
-frecuencias = np.array([1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1])
-probabilidades = frecuencias / 36
-
-plt.bar(valores, probabilidades)
-plt.xlabel("Suma de los dados")
-plt.ylabel("Probabilidad")
-plt.title("Distribución de la suma de dos dados")
-plt.show()
-```
-
-Este ejemplo es sencillo, pero introduce una idea fundamental: **un modelo probabilístico no necesariamente predice un único resultado; describe las probabilidades asociadas con los diferentes resultados posibles.**
+La distribución binomial será utilizada como punto de partida para comprender por qué la distribución de Poisson aparece de manera natural en problemas relacionados con eventos poco frecuentes.
 
 <br><br>
 
-## La distribución binomial
+## 2. La distribución binomial
 
-Antes de introducir el modelo de Poisson conviene estudiar brevemente la distribución binomial, pues existe una relación matemática y conceptual muy importante entre ambas.
+Antes de introducir la distribución de Poisson, recordemos brevemente la distribución binomial. Su importancia en este capítulo se debe principalmente a la relación que existe entre ambos modelos.
 
-Supongamos que realizamos $n$ experimentos independientes, cada uno de los cuales tiene dos resultados posibles:
+<br><br>
+
+### 2.1. Ensayos de Bernoulli
+
+Supongamos que realizamos un experimento que puede producir únicamente dos resultados:
 
 $$
 \text{éxito},\qquad \text{fracaso}.
 $$
 
-Supongamos además que la probabilidad de éxito es siempre $p$.
+Un experimento de este tipo se denomina **ensayo de Bernoulli**.
 
-Cada experimento recibe el nombre de **ensayo de Bernoulli**.
-
-Si definimos
+Supongamos que la probabilidad de éxito es $p$. Entonces
 
 $$
-X=\text{número de éxitos en }n\text{ ensayos},
+P(\text{éxito})=p
 $$
 
-entonces $X$ sigue una distribución binomial:
+y
+
+$$
+P(\text{fracaso})=1-p.
+$$
+
+Si realizamos $n$ ensayos independientes bajo las mismas condiciones, podemos definir
+
+$$
+X=\text{número de éxitos obtenidos en los }n\text{ ensayos}.
+$$
+
+En este caso,
 
 $$
 X\sim\operatorname{Binomial}(n,p).
 $$
 
-Su función de masa de probabilidad es
+La función de masa de probabilidad es
 
 $$
+\boxed{
 P(X=k)
 =
 \binom{n}{k}
-p^k(1-p)^{n-k},
+p^k(1-p)^{n-k}
+}
 $$
 
 para
@@ -209,7 +108,21 @@ $$
 
 representa el número de maneras de seleccionar cuáles de los $n$ ensayos corresponden a los $k$ éxitos.
 
-### Ejemplo
+Además,
+
+$$
+E[X]=np
+$$
+
+y
+
+$$
+\operatorname{Var}(X)=np(1-p).
+$$
+
+<br><br>
+
+### 2.2. Ejemplo: piezas defectuosas
 
 Supongamos que la probabilidad de que una pieza producida por una máquina sea defectuosa es
 
@@ -217,13 +130,13 @@ $$
 p=0.05.
 $$
 
-Si seleccionamos $10$ piezas de manera independiente y definimos
+Seleccionamos diez piezas de manera independiente y definimos
 
 $$
-X=\text{número de piezas defectuosas},
+X=\text{número de piezas defectuosas}.
 $$
 
-entonces
+Entonces
 
 $$
 X\sim\operatorname{Binomial}(10,0.05).
@@ -243,9 +156,9 @@ $$
 P(X=3)\approx 0.0105.
 $$
 
-Es decir, la probabilidad es aproximadamente $1.05%$.
+Por tanto, la probabilidad es aproximadamente del $1.05%$.
 
-Podemos calcularla directamente en Python:
+Podemos calcularla utilizando Python:
 
 ```python
 from math import comb
@@ -254,34 +167,38 @@ n = 10
 p = 0.05
 k = 3
 
-probabilidad = comb(n, k) * p**k * (1-p)**(n-k)
+probabilidad = comb(n, k) * p**k * (1 - p)**(n - k)
 
 print(probabilidad)
 ```
 
-La distribución binomial resulta apropiada cuando conocemos el número de ensayos $n$ y nos interesa contar cuántos de ellos producen un determinado resultado.
+La distribución binomial resulta apropiada cuando conocemos de antemano el número de ensayos $n$ y queremos contar cuántos de ellos producen determinado resultado.
 
-Sin embargo, existen muchas situaciones en las cuales no tiene sentido fijar de antemano el número de ensayos. Por ejemplo:
+Sin embargo, existen muchas situaciones en las que no tiene sentido fijar previamente el número de ensayos.
 
-> ¿Cuántos clientes llegarán durante la próxima hora?
+Por ejemplo:
 
-En este caso no conocemos previamente cuántos "ensayos" ocurrirán. Lo que puede resultar razonable conocer es una **tasa promedio de ocurrencia**.
+> ¿Cuántos clientes llegarán a una cafetería durante la próxima hora?
+
+En este caso no conocemos de antemano cuántas oportunidades habrá para que ocurra una llegada. En cambio, podemos disponer de información sobre una **tasa promedio de ocurrencia**.
 
 Esta situación conduce naturalmente al modelo de Poisson.
 
 <br><br>
 
-## De la distribución binomial a la distribución de Poisson
+## 3. De la distribución binomial a la distribución de Poisson
 
-Existe una conexión fundamental entre las distribuciones binomial y de Poisson.
+La distribución de Poisson puede entenderse como un límite de la distribución binomial en un régimen particular.
 
 Supongamos que
 
 $$
-X_n\sim\operatorname{Binomial}(n,p_n)
+X_n\sim\operatorname{Binomial}(n,p_n),
 $$
 
-y que $n$ es grande mientras que $p_n$ es pequeño, de tal manera que
+donde $n$ es grande y $p_n$ es pequeño.
+
+Supongamos además que
 
 $$
 np_n=\lambda
@@ -289,7 +206,7 @@ $$
 
 permanece constante.
 
-En este caso, la distribución binomial puede aproximarse mediante una distribución de Poisson:
+En estas condiciones,
 
 $$
 \operatorname{Binomial}(n,p_n)
@@ -297,15 +214,19 @@ $$
 \operatorname{Poisson}(\lambda).
 $$
 
-Esta aproximación es especialmente útil cuando tenemos un gran número de oportunidades para que ocurra un evento, pero la probabilidad de ocurrencia en cada oportunidad es pequeña.
+Esta aproximación es especialmente útil cuando existe un gran número de oportunidades para que ocurra un evento, pero la probabilidad de ocurrencia en cada oportunidad es pequeña.
 
-Para entender la conexión, escribamos
+<br><br>
+
+### 3.1. Obtención de la aproximación
+
+Tomemos
 
 $$
 p_n=\frac{\lambda}{n}.
 $$
 
-Entonces,
+La probabilidad binomial de obtener exactamente $k$ éxitos es
 
 $$
 P(X_n=k)
@@ -315,58 +236,100 @@ P(X_n=k)
 \left(1-\frac{\lambda}{n}\right)^{n-k}.
 $$
 
-Cuando $n$ crece,
+Podemos escribir
 
 $$
 \binom{n}{k}
 \left(\frac{\lambda}{n}\right)^k
-\longrightarrow
-\frac{\lambda^k}{k!},
+=
+\frac{n(n-1)\cdots(n-k+1)}{k!}
+\frac{\lambda^k}{n^k}.
 $$
 
-mientras que
+Para $k$ fijo, cuando $n$ tiende a infinito,
 
 $$
-\left(1-\frac{\lambda}{n}\right)^n
-\longrightarrow
-e^{-\lambda}.
+\frac{n(n-1)\cdots(n-k+1)}{n^k}
+\longrightarrow 1.
 $$
 
 Por tanto,
 
 $$
-P(X_n=k)
+\binom{n}{k}
+\left(\frac{\lambda}{n}\right)^k
 \longrightarrow
-e^{-\lambda}\frac{\lambda^k}{k!}.
+\frac{\lambda^k}{k!}.
 $$
 
-Esta expresión define la distribución de Poisson.
+Por otro lado,
 
-La relación puede resumirse como
+$$
+\left(1-\frac{\lambda}{n}\right)^n
+\longrightarrow e^{-\lambda}.
+$$
+
+Además,
+
+$$
+\left(1-\frac{\lambda}{n}\right)^{-k}
+\longrightarrow1.
+$$
+
+En consecuencia,
+
+$$
+P(X_n=k)
+\longrightarrow
+e^{-\lambda}
+\frac{\lambda^k}{k!}.
+$$
+
+Esta es precisamente la función de masa de probabilidad de una distribución de Poisson.
+
+Así obtenemos
 
 $$
 \boxed{
-n\text{ grande},\quad p\text{ pequeño},\quad np=\lambda
-\quad\Longrightarrow\quad
 \operatorname{Binomial}(n,p)
 \approx
-\operatorname{Poisson}(\lambda)
+\operatorname{Poisson}(\lambda),
+\qquad
+\lambda=np,
 }
 $$
 
-Esta relación es importante porque muestra que el modelo de Poisson no aparece de manera aislada: puede entenderse como un límite natural de modelos binomiales.
+cuando $n$ es grande y $p$ es pequeño.
 
 <br><br>
 
-## La distribución de Poisson
+### 3.2. Interpretación
 
-Una variable aleatoria discreta $X$ tiene distribución de Poisson con parámetro $\lambda>0$ si
+La aproximación anterior proporciona una interpretación intuitiva del modelo de Poisson.
+
+Supongamos que tenemos muchas oportunidades para que ocurra un evento, pero cada oportunidad tiene una probabilidad muy pequeña de producirlo.
+
+En lugar de especificar explícitamente cada una de esas oportunidades, podemos describir el fenómeno mediante una única cantidad:
+
+$$
+\lambda=np,
+$$
+
+que representa el número esperado de eventos.
+
+Así, el modelo de Poisson permite pasar de una descripción basada en muchos ensayos individuales a una descripción basada en una **tasa o número esperado de eventos**.
+
+<br><br>
+
+## 4. La distribución de Poisson
+
+Una variable aleatoria $X$ tiene distribución de Poisson con parámetro $\lambda>0$ si
 
 $$
 X\sim\operatorname{Poisson}(\lambda)
 $$
 
-y su función de masa de probabilidad está dada por
+y
 
 $$
 \boxed{
@@ -383,33 +346,19 @@ $$
 k=0,1,2,\ldots
 $$
 
-El parámetro $\lambda$ determina la distribución completa.
+El parámetro $\lambda$ determina completamente la distribución.
 
-Una propiedad particularmente importante es
+<br><br>
 
-$$
-E[X]=\lambda
-$$
+### 4.1. Interpretación del parámetro $\lambda$
 
-y
+Una característica fundamental de la distribución de Poisson es
 
 $$
-\operatorname{Var}(X)=\lambda.
+E[X]=\lambda.
 $$
 
-Es decir,
-
-$$
-\boxed{
-E[X]=\operatorname{Var}(X)=\lambda
-}
-$$
-
-Esta propiedad será útil posteriormente tanto para interpretar el modelo como para estimar su parámetro.
-
-### Interpretación de $\lambda$
-
-En una distribución de Poisson, $\lambda$ representa el **número esperado de eventos** en el intervalo o región que estamos estudiando.
+Por tanto, $\lambda$ representa el **número esperado de eventos en el intervalo o región que estamos estudiando**.
 
 Por ejemplo, si
 
@@ -417,110 +366,29 @@ $$
 X\sim\operatorname{Poisson}(5),
 $$
 
-podemos interpretar $\lambda=5$ como:
-
-> El número promedio de eventos observados en el intervalo considerado es 5.
-
-Esto no significa que siempre ocurran exactamente cinco eventos.
-
-Podemos observar
+entonces
 
 $$
-0,1,2,3,4,5,6,\ldots
+E[X]=5.
+$$
+
+Esto no significa que siempre observemos exactamente cinco eventos.
+
+Una observación particular puede producir
+
+$$
+0,1,2,3,\ldots
 $$
 
 eventos.
 
-El valor $5$ representa únicamente el promedio de largo plazo.
-
-### Ejemplo: llamadas telefónicas
-
-Supongamos que una central recibe en promedio
-
-$$
-\lambda=4
-$$
-
-llamadas por minuto.
-
-Si $X$ representa el número de llamadas recibidas durante un minuto, podemos modelar
-
-$$
-X\sim\operatorname{Poisson}(4).
-$$
-
-La probabilidad de recibir exactamente seis llamadas es
-
-$$
-P(X=6)
-=
-e^{-4}\frac{4^6}{6!}.
-$$
-
-En Python:
-
-```python
-import math
-
-lam = 4
-k = 6
-
-probabilidad = math.exp(-lam) * lam**k / math.factorial(k)
-
-print(probabilidad)
-```
-
-También podemos utilizar NumPy para generar observaciones de una distribución de Poisson:
-
-```python
-import numpy as np
-
-lam = 4
-
-muestra = np.random.poisson(lam, size=20)
-
-print(muestra)
-```
-
-Cada elemento de `muestra` representa una posible observación del número de llamadas recibidas durante un minuto.
+El valor $5$ representa el promedio que esperaríamos obtener al repetir el experimento muchas veces bajo las mismas condiciones.
 
 <br><br>
 
-## Esperanza y varianza
-
-Para una variable aleatoria discreta $X$, la esperanza se define mediante
-
-$$
-E[X]
-=
-\sum_x xP(X=x).
-$$
-
-La esperanza representa el valor promedio que obtendríamos al repetir muchas veces el experimento bajo las mismas condiciones.
-
-La varianza mide la dispersión alrededor de la esperanza:
-
-$$
-\operatorname{Var}(X)
-=
-E[(X-E[X])^2].
-$$
-
-Una expresión equivalente es
-
-$$
-\operatorname{Var}(X)
-=
-E[X^2]-(E[X])^2.
-$$
+### 4.2. Esperanza y varianza
 
 Para una variable de Poisson,
-
-$$
-X\sim\operatorname{Poisson}(\lambda),
-$$
-
-se obtiene
 
 $$
 E[X]=\lambda
@@ -532,13 +400,19 @@ $$
 \operatorname{Var}(X)=\lambda.
 $$
 
-Por tanto, la desviación estándar es
+Por tanto,
+
+$$
+\boxed{
+E[X]=\operatorname{Var}(X)=\lambda.
+}
+$$
+
+La desviación estándar es
 
 $$
 \sigma_X=\sqrt{\lambda}.
 $$
-
-Esto permite una primera interpretación cuantitativa del modelo.
 
 Por ejemplo, si
 
@@ -562,57 +436,94 @@ $$
 \sigma_X=10.
 $$
 
-Por tanto, aunque el número esperado de eventos sea $100$, las observaciones individuales pueden presentar variabilidad alrededor de este valor.
-
-### Comparación con la distribución binomial
-
-Para
-
-$$
-X\sim\operatorname{Binomial}(n,p),
-$$
-
-tenemos
-
-$$
-E[X]=np
-$$
-
-y
-
-$$
-\operatorname{Var}(X)=np(1-p).
-$$
-
-Si $p$ es pequeño,
-
-$$
-1-p\approx 1,
-$$
-
-y entonces
-
-$$
-\operatorname{Var}(X)\approx np.
-$$
-
-Como $\lambda=np$,
-
-$$
-E[X]\approx\lambda,
-\qquad
-\operatorname{Var}(X)\approx\lambda.
-$$
-
-Esto proporciona otra forma de comprender por qué la distribución de Poisson aparece como una aproximación de la binomial en el régimen de eventos raros.
+Así, el número esperado de eventos es $100$, mientras que la variabilidad típica alrededor de este valor está asociada con una desviación estándar de $10$.
 
 <br><br>
 
-## El proceso de Poisson
+### 4.3. Ejemplo: llamadas telefónicas
 
-Hasta ahora hemos considerado una variable aleatoria $X$ que cuenta eventos dentro de un intervalo previamente especificado.
+Supongamos que una central telefónica recibe en promedio cuatro llamadas por minuto.
 
-Ahora queremos introducir explícitamente el tiempo.
+Si $X$ representa el número de llamadas recibidas durante un minuto, podemos plantear
+
+$$
+X\sim\operatorname{Poisson}(4).
+$$
+
+La probabilidad de recibir exactamente seis llamadas es
+
+$$
+P(X=6)
+=
+e^{-4}\frac{4^6}{6!}.
+$$
+
+Podemos calcularla mediante Python:
+
+```python
+import math
+
+lam = 4
+k = 6
+
+probabilidad = math.exp(-lam) * lam**k / math.factorial(k)
+
+print(probabilidad)
+```
+
+También podemos generar observaciones aleatorias del modelo:
+
+```python
+import numpy as np
+
+lam = 4
+
+muestra = np.random.poisson(lam, size=20)
+
+print(muestra)
+```
+
+Cada elemento de `muestra` representa una posible observación del número de llamadas recibidas durante un minuto.
+
+<br><br>
+
+### 4.4. Visualización de la distribución
+
+Podemos visualizar la distribución de Poisson para diferentes valores de $\lambda$.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+lam = 5
+
+k = np.arange(0, 20)
+
+probabilidades = [
+    math.exp(-lam) * lam**x / math.factorial(x)
+    for x in k
+]
+
+plt.bar(k, probabilidades)
+
+plt.xlabel("Número de eventos")
+plt.ylabel("Probabilidad")
+plt.title("Distribución de Poisson")
+plt.show()
+```
+
+El valor de $\lambda$ determina tanto la posición como la dispersión de la distribución.
+
+Cuando $\lambda$ aumenta, el número esperado de eventos aumenta y la distribución se desplaza hacia valores mayores.
+
+<br><br>
+
+## 5. El proceso de Poisson
+
+La distribución de Poisson describe el número de eventos observado dentro de un intervalo previamente especificado.
+
+Ahora queremos incorporar explícitamente el tiempo.
 
 Sea
 
@@ -620,24 +531,24 @@ $$
 N(t)
 $$
 
-el número de eventos que han ocurrido desde el tiempo $0$ hasta el tiempo $t$.
+el número de eventos que han ocurrido desde el instante $0$ hasta el instante $t$.
 
-Un **proceso de Poisson** con tasa $\lambda>0$ es un modelo para la ocurrencia aleatoria de eventos que satisface, entre otras, las siguientes propiedades:
+Un **proceso de Poisson** con tasa $\lambda>0$ es un modelo para la ocurrencia de eventos que satisface las siguientes propiedades fundamentales:
 
 1. $N(0)=0$.
-2. Los incrementos correspondientes a intervalos de tiempo disjuntos son independientes.
+2. Los eventos ocurridos en intervalos de tiempo disjuntos son independientes.
 3. La tasa promedio de ocurrencia de eventos es constante e igual a $\lambda$.
 4. El número de eventos durante un intervalo de longitud $t$ sigue una distribución de Poisson con parámetro $\lambda t$.
 
-Por tanto,
+En particular,
 
 $$
 \boxed{
-N(t)\sim\operatorname{Poisson}(\lambda t)
+N(t)\sim\operatorname{Poisson}(\lambda t).
 }
 $$
 
-y
+Por tanto,
 
 $$
 \boxed{
@@ -648,25 +559,29 @@ e^{-\lambda t}
 }
 $$
 
-Esta expresión constituye una de las fórmulas fundamentales del capítulo.
+Esta es la expresión fundamental del proceso de Poisson.
 
-### Interpretación de la tasa $\lambda$
+<br><br>
 
-Es importante distinguir entre una **tasa** y un **número esperado de eventos**.
+### 5.1. Tasa de ocurrencia
 
-Si una central recibe en promedio
+Es importante distinguir entre la tasa $\lambda$ y el número esperado de eventos.
+
+Supongamos que una tienda recibe en promedio
 
 $$
 \lambda=5
 $$
 
-llamadas por hora, entonces $\lambda$ tiene unidades
+clientes por hora.
+
+Aquí $\lambda$ tiene unidades
 
 $$
-\frac{\text{llamadas}}{\text{hora}}.
+\frac{\text{clientes}}{\text{hora}}.
 $$
 
-Durante un intervalo de duración $t$, el número esperado de llamadas es
+Durante un intervalo de duración $t$, el número esperado de clientes es
 
 $$
 E[N(t)]=\lambda t.
@@ -678,23 +593,21 @@ $$
 E[N(2)]=5(2)=10.
 $$
 
-Así,
+Por tanto,
 
 $$
 N(2)\sim\operatorname{Poisson}(10).
 $$
 
-El parámetro de la distribución no es simplemente $\lambda$, sino
+Así, $\lambda$ es una **tasa**, mientras que $\lambda t$ es el **número esperado de eventos durante el intervalo considerado**.
 
-$$
-\lambda t.
-$$
+Esta distinción es fundamental al construir un modelo de Poisson.
 
-Esta distinción es fundamental para construir correctamente el modelo.
+<br><br>
 
-### Ejemplo: llegada de clientes
+### 5.2. Ejemplo: llegada de clientes
 
-Supongamos que una tienda recibe en promedio
+Supongamos que una cafetería recibe en promedio
 
 $$
 \lambda=6
@@ -702,7 +615,7 @@ $$
 
 clientes por hora.
 
-Queremos calcular la probabilidad de que lleguen exactamente $8$ clientes durante las próximas dos horas.
+Queremos calcular la probabilidad de que lleguen exactamente ocho clientes durante las próximas dos horas.
 
 Como
 
@@ -735,8 +648,8 @@ En Python:
 ```python
 import math
 
-lam = 6       # clientes por hora
-t = 2         # horas
+lam = 6
+t = 2
 k = 8
 
 mu = lam * t
@@ -746,10 +659,18 @@ probabilidad = math.exp(-mu) * mu**k / math.factorial(k)
 print(probabilidad)
 ```
 
-Podemos también calcular la probabilidad de que llegue al menos un cliente:
+<br><br>
+
+### 5.3. Probabilidad de que ocurra al menos un evento
+
+Una pregunta particularmente frecuente es:
+
+> ¿Cuál es la probabilidad de que ocurra al menos un evento durante un intervalo de duración $t$?
+
+Podemos utilizar el complemento:
 
 $$
-P(N(t)\geq 1)
+P(N(t)\geq1)
 =
 1-P(N(t)=0).
 $$
@@ -757,99 +678,459 @@ $$
 Como
 
 $$
-P(N(t)=0)=e^{-\lambda t},
+P(N(t)=0)
+=
+e^{-\lambda t},
 $$
 
 obtenemos
 
 $$
 \boxed{
-P(N(t)\geq1)=1-e^{-\lambda t}.
+P(N(t)\geq1)
+=
+1-e^{-\lambda t}.
 }
 $$
 
-Para el ejemplo,
+Por ejemplo, si una central recibe en promedio
 
 $$
-P(N(2)\geq1)=1-e^{-12}.
+\lambda=4
+$$
+
+llamadas por hora, la probabilidad de recibir al menos una llamada durante treinta minutos es
+
+$$
+P(N(0.5)\geq1)
+=
+1-e^{-4(0.5)}
+=
+1-e^{-2}.
+$$
+
+En Python:
+
+```python
+import math
+
+lam = 4
+t = 0.5
+
+probabilidad = 1 - math.exp(-lam * t)
+
+print(probabilidad)
+```
+
+<br><br>
+
+### 5.4. Incrementos independientes
+
+Una propiedad importante del proceso de Poisson es la independencia de los incrementos.
+
+Si $0\leq t_1<t_2<t_3$, entonces el número de eventos ocurrido durante
+
+$$
+[t_1,t_2]
+$$
+
+es independiente del número de eventos ocurrido durante
+
+$$
+[t_2,t_3].
+$$
+
+Además,
+
+$$
+N(t_2)-N(t_1)
+\sim
+\operatorname{Poisson}
+\left(\lambda(t_2-t_1)\right).
+$$
+
+Esta propiedad permite analizar diferentes intervalos de tiempo de manera separada.
+
+Por ejemplo, si una central recibe llamadas a una tasa constante de $10$ llamadas por hora, entonces el número de llamadas durante un intervalo de quince minutos sigue una distribución
+
+$$
+\operatorname{Poisson}(2.5),
+$$
+
+pues
+
+$$
+10(0.25)=2.5.
 $$
 
 <br><br>
 
-## El tiempo entre eventos
+## 6. El tiempo entre eventos
 
-El proceso de Poisson permite estudiar no solamente cuántos eventos ocurren, sino también cuánto tiempo transcurre entre eventos.
+El proceso de Poisson permite estudiar una segunda pregunta:
 
-Si los eventos ocurren según un proceso de Poisson con tasa $\lambda$, entonces el tiempo $T$ hasta el siguiente evento sigue una distribución exponencial:
+> ¿Cuánto tiempo debemos esperar hasta que ocurra el siguiente evento?
+
+Esta pregunta conduce a la distribución exponencial.
+
+<br><br>
+
+### 6.1. Distribución exponencial
+
+Supongamos que los eventos ocurren según un proceso de Poisson con tasa $\lambda$.
+
+Sea $T$ el tiempo de espera hasta el siguiente evento.
+
+Entonces
 
 $$
 T\sim\operatorname{Exponencial}(\lambda).
 $$
 
-Su función de distribución acumulada es
-
-$$
-P(T\leq t)
-=
-1-e^{-\lambda t},
-\qquad t\geq0.
-$$
-
-Por tanto,
-
-$$
-P(T>t)=e^{-\lambda t}.
-$$
-
-Esta relación tiene una interpretación sencilla:
+Para determinar su distribución observemos que
 
 $$
 P(T>t)
 $$
 
-es la probabilidad de que **no ocurra ningún evento durante los próximos $t$ unidades de tiempo**.
+es precisamente la probabilidad de que no ocurra ningún evento durante los primeros $t$ minutos.
 
-Esto coincide exactamente con la interpretación del proceso de Poisson:
+Por tanto,
 
 $$
-P(N(t)=0)=e^{-\lambda t}.
+P(T>t)
+=
+P(N(t)=0).
 $$
 
-Así,
+Como
+
+$$
+N(t)\sim\operatorname{Poisson}(\lambda t),
+$$
+
+tenemos
+
+$$
+P(N(t)=0)
+=
+e^{-\lambda t}.
+$$
+
+Por consiguiente,
 
 $$
 \boxed{
-P(T>t)=P(N(t)=0).
+P(T>t)=e^{-\lambda t}.
 }
 $$
 
-La distribución de Poisson y la distribución exponencial representan dos aspectos diferentes del mismo fenómeno:
+Equivalentemente,
 
 $$
 \boxed{
-\begin{array}{c}
-\text{Poisson}\\
-\text{¿Cuántos eventos ocurren?}
-\end{array}
-}
-\qquad
-\boxed{
-\begin{array}{c}
-\text{Exponencial}\\
-\text{¿Cuánto esperamos hasta el siguiente evento?}
-\end{array}
+P(T\leq t)=1-e^{-\lambda t}.
 }
 $$
-
-Esta conexión será particularmente útil para la simulación de procesos de Poisson.
 
 <br><br>
 
-## Simulación de variables de Poisson
+### 6.2. Tiempo medio entre eventos
 
-Una de las ventajas de los modelos probabilísticos es que podemos generar observaciones artificiales a partir del modelo.
+Para una variable exponencial con parámetro $\lambda$,
 
-Supongamos nuevamente que
+$$
+E[T]=\frac{1}{\lambda}.
+$$
+
+Por ejemplo, si una central recibe
+
+$$
+\lambda=4
+$$
+
+llamadas por hora, el tiempo medio entre llamadas es
+
+$$
+E[T]=\frac14\text{ horas}.
+$$
+
+Como
+
+$$
+\frac14\text{ horas}=15\text{ minutos},
+$$
+
+el tiempo medio entre llamadas es de quince minutos.
+
+Esto no significa que siempre debamos esperar exactamente quince minutos. Nuevamente, se trata de un valor promedio.
+
+<br><br>
+
+### 6.3. Dos perspectivas del mismo proceso
+
+El proceso de Poisson puede analizarse desde dos perspectivas complementarias:
+
+$$
+\boxed{
+\text{Poisson}
+\quad\longrightarrow\quad
+\text{¿Cuántos eventos ocurren?}
+}
+$$
+
+y
+
+$$
+\boxed{
+\text{Exponencial}
+\quad\longrightarrow\quad
+\text{¿Cuánto tiempo esperamos?}
+}
+$$
+
+La primera perspectiva se concentra en el conteo de eventos y la segunda en los tiempos de espera.
+
+Esta relación será útil para simular procesos de Poisson.
+
+<br><br>
+
+## 7. Estimación del parámetro
+
+En una aplicación real normalmente no conocemos el valor de $\lambda$.
+
+Supongamos que observamos el número de eventos durante $n$ intervalos equivalentes y obtenemos los datos
+
+$$
+x_1,x_2,\ldots,x_n.
+$$
+
+Queremos utilizar estos datos para estimar la tasa $\lambda$.
+
+Una primera observación es que
+
+$$
+E[X]=\lambda.
+$$
+
+Por tanto, parece natural estimar $\lambda$ mediante la media de los datos:
+
+$$
+\hat{\lambda}
+=
+\overline{x}
+=
+\frac{1}{n}
+\sum_{i=1}^{n}x_i.
+$$
+
+Este resultado puede justificarse formalmente mediante máxima verosimilitud.
+
+<br><br>
+
+### 7.1. Máxima verosimilitud
+
+Supongamos que
+
+$$
+X_1,\ldots,X_n
+$$
+
+son observaciones independientes de una distribución
+
+$$
+\operatorname{Poisson}(\lambda).
+$$
+
+La función de verosimilitud es
+
+$$
+L(\lambda)
+=
+\prod_{i=1}^{n}
+P(X_i=x_i).
+$$
+
+Como
+
+$$
+P(X_i=x_i)
+=
+e^{-\lambda}
+\frac{\lambda^{x_i}}{x_i!},
+$$
+
+tenemos
+
+$$
+L(\lambda)
+=
+\prod_{i=1}^{n}
+e^{-\lambda}
+\frac{\lambda^{x_i}}{x_i!}.
+$$
+
+Por tanto,
+
+$$
+L(\lambda)
+=
+e^{-n\lambda}
+\frac{\lambda^{\sum_i x_i}}
+{\prod_i x_i!}.
+$$
+
+Es conveniente utilizar el logaritmo de la verosimilitud:
+
+$$
+\ell(\lambda)
+=
+\log L(\lambda).
+$$
+
+Entonces,
+
+$$
+\ell(\lambda)
+=
+-n\lambda
++
+\left(\sum_{i=1}^{n}x_i\right)\log\lambda
+-
+\sum_{i=1}^{n}\log(x_i!).
+$$
+
+Derivando respecto a $\lambda$,
+
+$$
+\frac{d\ell}{d\lambda}
+=
+-n
++
+\frac{\sum_i x_i}{\lambda}.
+$$
+
+Para encontrar el máximo igualamos a cero:
+
+$$
+-n+
+\frac{\sum_i x_i}{\lambda}=0.
+$$
+
+Por tanto,
+
+$$
+n\lambda
+=
+\sum_i x_i,
+$$
+
+y obtenemos
+
+$$
+\boxed{
+\hat{\lambda}
+=
+\frac{1}{n}
+\sum_{i=1}^{n}x_i
+=
+\overline{x}.
+}
+$$
+
+Así, el estimador de máxima verosimilitud de $\lambda$ coincide con la media muestral.
+
+<br><br>
+
+### 7.2. Ejemplo de estimación
+
+Supongamos que durante diez horas se registró el siguiente número de llamadas:
+
+$$
+4,\quad 7,\quad 5,\quad 3,\quad 6,
+\quad 4,\quad 8,\quad 5,\quad 3,\quad 5.
+$$
+
+La estimación de $\lambda$ es
+
+$$
+\hat{\lambda}
+=
+\frac{
+4+7+5+3+6+4+8+5+3+5
+}{10}.
+$$
+
+Por tanto,
+
+$$
+\hat{\lambda}=5.
+$$
+
+Nuestro modelo estimado es entonces
+
+$$
+X\sim\operatorname{Poisson}(5).
+$$
+
+Podemos realizar el cálculo mediante Python:
+
+```python
+import numpy as np
+
+datos = np.array([4, 7, 5, 3, 6, 4, 8, 5, 3, 5])
+
+lambda_estimado = np.mean(datos)
+
+print("Estimación de lambda:", lambda_estimado)
+```
+
+Una vez estimado el parámetro, podemos utilizar el modelo para realizar predicciones probabilísticas.
+
+Por ejemplo, la probabilidad de recibir exactamente ocho llamadas durante una hora es
+
+$$
+P(X=8)
+=
+e^{-5}\frac{5^8}{8!}.
+$$
+
+```python
+import math
+
+lam = lambda_estimado
+k = 8
+
+probabilidad = math.exp(-lam) * lam**k / math.factorial(k)
+
+print("P(X = 8) =", probabilidad)
+```
+
+El proceso completo puede resumirse como
+
+$$
+\boxed{
+\text{datos}
+\longrightarrow
+\text{estimación de }\lambda
+\longrightarrow
+\text{modelo}
+\longrightarrow
+\text{predicción probabilística}.
+}
+$$
+
+<br><br>
+
+## 8. Simulación de modelos de Poisson
+
+La simulación computacional permite estudiar el comportamiento de un modelo estocástico y compararlo con sus propiedades teóricas.
+
+<br><br>
+
+### 8.1. Simulación de una distribución de Poisson
+
+Supongamos que
 
 $$
 X\sim\operatorname{Poisson}(5).
@@ -869,19 +1150,19 @@ print("Media:", np.mean(datos))
 print("Varianza:", np.var(datos))
 ```
 
-Como
+Teóricamente,
 
 $$
-E[X]=\lambda=5
+E[X]=5
 $$
 
 y
 
 $$
-\operatorname{Var}(X)=\lambda=5,
+\operatorname{Var}(X)=5.
 $$
 
-esperamos que, para una muestra suficientemente grande,
+Por tanto, esperamos encontrar aproximadamente
 
 $$
 \overline X\approx5
@@ -893,7 +1174,13 @@ $$
 s^2\approx5.
 $$
 
-Podemos visualizar la distribución simulada:
+Al aumentar el número de simulaciones, estos valores deberían aproximarse cada vez más a los valores teóricos.
+
+<br><br>
+
+### 8.2. Comparación entre simulación y modelo
+
+Podemos comparar la distribución empírica obtenida mediante simulación con la distribución teórica.
 
 ```python
 import numpy as np
@@ -907,6 +1194,11 @@ datos = np.random.poisson(lam, size=n)
 
 valores = np.arange(0, datos.max() + 1)
 
+probabilidades = [
+    math.exp(-lam) * lam**k / math.factorial(k)
+    for k in valores
+]
+
 plt.hist(
     datos,
     bins=np.arange(-0.5, datos.max() + 1.5),
@@ -914,49 +1206,37 @@ plt.hist(
     alpha=0.6
 )
 
-pmf = [
-    math.exp(-lam) * lam**k / math.factorial(k)
-    for k in valores
-]
+plt.plot(valores, probabilidades, "o")
 
-plt.plot(valores, pmf, "o")
 plt.xlabel("Número de eventos")
 plt.ylabel("Probabilidad")
-plt.title("Distribución de Poisson: simulación y modelo")
+plt.title("Modelo de Poisson y simulación")
 plt.show()
 ```
 
-La distribución simulada debería aproximarse progresivamente a la distribución teórica cuando aumenta el tamaño de la muestra.
+La distribución obtenida mediante simulación debería aproximarse a la distribución teórica.
 
-Esta es una manifestación computacional de la **ley de los grandes números**.
+La discrepancia observada se debe a que una simulación representa solamente una muestra finita.
 
 <br><br>
 
-## Simulación de un proceso de Poisson
+### 8.3. Simulación de un proceso de Poisson
 
-También podemos simular directamente los tiempos de ocurrencia de los eventos.
+Para simular directamente un proceso de Poisson podemos utilizar la relación con la distribución exponencial.
 
-Supongamos que los eventos ocurren con tasa
+Si la tasa es $\lambda$, los tiempos entre eventos
 
 $$
-\lambda=3
+T_1,T_2,T_3,\ldots
 $$
 
-eventos por unidad de tiempo.
-
-Los tiempos entre eventos siguen una distribución exponencial:
+son variables aleatorias independientes con distribución exponencial:
 
 $$
 T_i\sim\operatorname{Exponencial}(\lambda).
 $$
 
-Si generamos sucesivamente estos tiempos,
-
-$$
-T_1,T_2,T_3,\ldots,
-$$
-
-los tiempos acumulados de ocurrencia son
+Los tiempos acumulados de ocurrencia son
 
 $$
 S_1=T_1,
@@ -973,570 +1253,316 @@ $$
 y, en general,
 
 $$
-S_n=\sum_{i=1}^n T_i.
+S_n=\sum_{i=1}^{n}T_i.
 $$
 
 Cada $S_n$ representa el instante en que ocurre el evento $n$.
 
-En Python podemos realizar esta simulación mediante:
+Podemos simular este proceso mediante:
 
 ```python
 import numpy as np
-import matplotlib.pyplot as plt
 
 lam = 3
 tiempo_maximo = 10
 
-tiempos_entre_eventos = []
+tiempos_eventos = []
 
 tiempo = 0
 
 while tiempo < tiempo_maximo:
+    
     espera = np.random.exponential(1 / lam)
     tiempo += espera
     
     if tiempo < tiempo_maximo:
-        tiempos_entre_eventos.append(tiempo)
+        tiempos_eventos.append(tiempo)
 
-print(tiempos_entre_eventos)
+print(tiempos_eventos)
 ```
 
-Podemos visualizar los eventos como puntos sobre el eje temporal:
-
-```python
-plt.eventplot(tiempos_entre_eventos)
-plt.xlabel("Tiempo")
-plt.yticks([])
-plt.title("Simulación de un proceso de Poisson")
-plt.show()
-```
-
-Cada punto representa la ocurrencia de un evento.
-
-Una característica importante de esta representación es que los eventos no aparecen separados por intervalos regulares. Algunas veces ocurren muy cerca unos de otros y otras veces existe un intervalo relativamente largo entre ellos.
-
-Esto permite visualizar una diferencia fundamental entre un proceso determinista y uno estocástico.
-
-En un modelo determinista podríamos tener eventos exactamente cada $1/\lambda$ unidades de tiempo. En el proceso de Poisson, $1/\lambda$ representa únicamente el **tiempo medio entre eventos**.
-
-<br><br>
-
-## Estimación del parámetro de Poisson
-
-En un problema real normalmente no conocemos el valor de $\lambda$.
-
-Supongamos que observamos el número de eventos durante $n$ intervalos equivalentes y obtenemos los datos
-
-$$
-x_1,x_2,\ldots,x_n.
-$$
-
-Queremos utilizar estos datos para estimar la tasa $\lambda$.
-
-Una primera aproximación consiste en observar que
-
-$$
-E[X]=\lambda.
-$$
-
-Por tanto, parece natural utilizar la media de los datos:
-
-$$
-\hat{\lambda}
-=
-\overline{x}
-=
-\frac{1}{n}
-\sum_{i=1}^n x_i.
-$$
-
-Este estimador puede justificarse formalmente mediante el método de **máxima verosimilitud**.
-
-### Máxima verosimilitud
-
-Supongamos que
-
-$$
-X_1,\ldots,X_n
-$$
-
-son observaciones independientes de una distribución
-
-$$
-\operatorname{Poisson}(\lambda).
-$$
-
-La función de verosimilitud es
-
-$$
-L(\lambda)
-=
-\prod_{i=1}^n
-P(X_i=x_i).
-$$
-
-Como
-
-$$
-P(X_i=x_i)
-=
-e^{-\lambda}
-\frac{\lambda^{x_i}}{x_i!},
-$$
-
-tenemos
-
-$$
-L(\lambda)
-=
-\prod_{i=1}^n
-e^{-\lambda}
-\frac{\lambda^{x_i}}{x_i!}.
-$$
-
-Por tanto,
-
-$$
-L(\lambda)
-=
-e^{-n\lambda}
-\frac{\lambda^{\sum_i x_i}}
-{\prod_i x_i!}.
-$$
-
-Es más conveniente trabajar con el logaritmo de la verosimilitud:
-
-$$
-\ell(\lambda)
-=
-\log L(\lambda).
-$$
-
-Entonces,
-
-$$
-\ell(\lambda)
-=
--n\lambda
-+
-\left(\sum_{i=1}^n x_i\right)\log(\lambda)
--
-\sum_{i=1}^n\log(x_i!).
-$$
-
-Derivando respecto a $\lambda$,
-
-$$
-\frac{d\ell}{d\lambda}
-=
--n
-+
-\frac{\sum_i x_i}{\lambda}.
-$$
-
-Igualando a cero,
-
-$$
--n+
-\frac{\sum_i x_i}{\lambda}=0.
-$$
-
-De aquí,
-
-$$
-n\lambda=\sum_i x_i,
-$$
-
-y obtenemos
-
-$$
-\boxed{
-\hat{\lambda}
-=
-\frac{1}{n}\sum_{i=1}^n x_i
-=
-\overline{x}.
-}
-$$
-
-Por tanto, el estimador de máxima verosimilitud del parámetro de Poisson es simplemente la media muestral.
-
-Este resultado tiene una interpretación muy natural: **la mejor estimación de la tasa promedio de ocurrencia es el promedio observado de eventos por intervalo**.
-
-<br><br>
-
-## Ejemplo de estimación de una tasa
-
-Supongamos que durante diez horas se registró el siguiente número de llamadas recibidas por una central:
-
-$$
-4,\quad 7,\quad 5,\quad 3,\quad 6,
-\quad 4,\quad 8,\quad 5,\quad 3,\quad 5.
-$$
-
-La estimación de la tasa es
-
-$$
-\hat{\lambda}
-=
-\frac{
-4+7+5+3+6+4+8+5+3+5
-}{10}.
-$$
-
-Por tanto,
-
-$$
-\hat{\lambda}=5.
-$$
-
-El modelo estimado sería
-
-$$
-X\sim\operatorname{Poisson}(5).
-$$
-
-Podemos realizar el cálculo mediante Python:
-
-```python
-import numpy as np
-
-datos = np.array([4, 7, 5, 3, 6, 4, 8, 5, 3, 5])
-
-lambda_estimado = np.mean(datos)
-
-print("Estimación de lambda:", lambda_estimado)
-```
-
-Una vez estimado $\lambda$, podemos utilizar el modelo para realizar predicciones probabilísticas.
-
-Por ejemplo, si los datos representan llamadas por hora y queremos conocer la probabilidad de recibir exactamente ocho llamadas durante una hora futura, podemos calcular
-
-$$
-P(X=8)
-=
-e^{-5}\frac{5^8}{8!}.
-$$
-
-En Python:
-
-```python
-import math
-
-lam = lambda_estimado
-k = 8
-
-probabilidad = math.exp(-lam) * lam**k / math.factorial(k)
-
-print("P(X = 8) =", probabilidad)
-```
-
-Aquí aparece uno de los aspectos fundamentales del modelamiento estocástico:
-
-$$
-\boxed{
-\text{datos}
-\rightarrow
-\text{estimación de parámetros}
-\rightarrow
-\text{modelo}
-\rightarrow
-\text{predicción probabilística}
-}
-$$
-
-No obtenemos una predicción determinista de ocho llamadas. Obtenemos una probabilidad asociada con ese resultado.
-
-<br><br>
-
-## Un ejemplo completo de modelamiento
-
-Consideremos ahora un problema más completo.
-
-Una empresa registra el número de fallas de un determinado componente durante períodos de una hora. Después de observar el sistema durante diez horas obtiene:
-
-```python
-fallas = np.array([2, 0, 1, 3, 2, 1, 4, 2, 1, 3])
-```
-
-Queremos:
-
-1. estimar la tasa promedio de fallas;
-2. construir un modelo de Poisson;
-3. calcular la probabilidad de observar exactamente cinco fallas durante una hora;
-4. simular 10 000 horas de funcionamiento.
-
-### Paso 1: estimación de la tasa
-
-La estimación es
-
-$$
-\hat{\lambda}
-=
-\frac{1}{10}
-\sum_{i=1}^{10}x_i.
-$$
-
-En Python:
-
-```python
-import numpy as np
-
-fallas = np.array([2, 0, 1, 3, 2, 1, 4, 2, 1, 3])
-
-lambda_estimado = np.mean(fallas)
-
-print(lambda_estimado)
-```
-
-### Paso 2: construcción del modelo
-
-Si obtenemos
-
-$$
-\hat{\lambda}=1.9,
-$$
-
-nuestro modelo es
-
-$$
-X\sim\operatorname{Poisson}(1.9).
-$$
-
-### Paso 3: probabilidad de cinco fallas
-
-Calculamos
-
-$$
-P(X=5)
-=
-e^{-1.9}
-\frac{1.9^5}{5!}.
-$$
-
-En Python:
-
-```python
-import math
-
-k = 5
-lam = lambda_estimado
-
-probabilidad = math.exp(-lam) * lam**k / math.factorial(k)
-
-print(probabilidad)
-```
-
-### Paso 4: simulación
-
-Podemos generar 10 000 observaciones:
-
-```python
-simulacion = np.random.poisson(
-    lambda_estimado,
-    size=10000
-)
-
-print("Media simulada:", np.mean(simulacion))
-print("Varianza simulada:", np.var(simulacion))
-```
-
-Finalmente podemos comparar los datos originales con el modelo:
+Podemos visualizar los tiempos de ocurrencia:
 
 ```python
 import matplotlib.pyplot as plt
 
-plt.hist(
-    simulacion,
-    bins=np.arange(
-        -0.5,
-        simulacion.max() + 1.5
-    ),
-    density=True
-)
+plt.eventplot(tiempos_eventos)
 
-plt.xlabel("Número de fallas")
-plt.ylabel("Frecuencia relativa")
-plt.title("Simulación del número de fallas")
+plt.xlabel("Tiempo")
+plt.yticks([])
+plt.title("Simulación de un proceso de Poisson")
+
 plt.show()
 ```
 
-Este ejemplo resume buena parte de la metodología utilizada en el libro:
+Los eventos no aparecen separados por intervalos regulares. Algunos pueden ocurrir muy cerca unos de otros, mientras que entre otros puede existir un intervalo relativamente largo.
+
+Esto permite visualizar una diferencia importante entre un modelo determinista y un modelo estocástico.
+
+En un modelo determinista podríamos especificar exactamente los tiempos de ocurrencia. En un proceso de Poisson, en cambio, solamente conocemos la distribución de dichos tiempos.
+
+<br><br>
+
+## 9. Aplicaciones de los modelos de Poisson
+
+Los modelos de Poisson pueden utilizarse en una gran variedad de problemas en los cuales interesa contar eventos.
+
+<br><br>
+
+### 9.1. Llegada de clientes
+
+Supongamos que un establecimiento recibe clientes a una tasa promedio de
 
 $$
-\boxed{
-\text{observaciones}
-\rightarrow
-\text{modelo}
-\rightarrow
-\text{parámetros}
-\rightarrow
-\text{probabilidades}
-\rightarrow
-\text{simulación}
-}
+\lambda=12
+$$
+
+clientes por hora.
+
+Entonces, bajo los supuestos del modelo,
+
+$$
+N(t)\sim\operatorname{Poisson}(12t).
+$$
+
+Podemos utilizar el modelo para calcular probabilidades asociadas con diferentes intervalos de tiempo.
+
+<br><br>
+
+### 9.2. Llamadas telefónicas
+
+Una central telefónica puede recibir llamadas aproximadamente de manera independiente y a una tasa promedio determinada.
+
+Si la tasa es
+
+$$
+\lambda=20
+$$
+
+llamadas por hora, entonces el número de llamadas durante treinta minutos puede modelarse mediante
+
+$$
+N(0.5)\sim\operatorname{Poisson}(10).
 $$
 
 <br><br>
 
-## Aplicaciones del modelo de Poisson
+### 9.3. Fallas de componentes
 
-El modelo de Poisson puede utilizarse cuando una variable representa el número de ocurrencias de un evento bajo condiciones apropiadas.
-
-Algunos ejemplos son:
-
-### Llegada de clientes
-
-Si una tienda recibe clientes de manera aproximadamente independiente y a una tasa promedio estable, podemos modelar el número de llegadas durante un intervalo mediante
+Supongamos que un sistema registra en promedio
 
 $$
-N(t)\sim\operatorname{Poisson}(\lambda t).
+\lambda=2
 $$
 
-### Llamadas telefónicas
+fallas por día.
 
-El número de llamadas recibidas por una central durante un intervalo puede modelarse mediante un proceso de Poisson cuando la tasa de llamadas es aproximadamente constante y las llegadas pueden considerarse independientes.
+Si las fallas pueden considerarse aproximadamente independientes y la tasa es estable, podemos utilizar
 
-### Fallas de componentes
+$$
+N(t)\sim\operatorname{Poisson}(2t)
+$$
 
-El número de fallas observadas durante un intervalo de operación puede modelarse mediante Poisson en determinadas condiciones.
-
-### Defectos en materiales
-
-Si estamos interesados en el número de defectos que aparecen en una longitud determinada de material, podemos utilizar un modelo de Poisson siempre que resulte razonable suponer una tasa aproximadamente constante de defectos y una ocurrencia independiente.
-
-### Mutaciones
-
-En ciertos modelos simplificados de genética, el número de mutaciones que ocurren en una región determinada puede representarse mediante una distribución de Poisson.
-
-En todos estos casos es importante recordar que **la distribución de Poisson no debe escogerse únicamente porque la variable sea un conteo**. La elección del modelo depende de los supuestos sobre el mecanismo que genera los eventos.
+para representar el número de fallas durante $t$ días.
 
 <br><br>
 
-## ¿Cuándo es razonable utilizar un modelo de Poisson?
+### 9.4. Defectos de fabricación
 
-El modelo de Poisson resulta particularmente apropiado cuando:
+Supongamos que una determinada clase de material presenta, en promedio, cuatro defectos por cada cien metros.
 
-* estamos contando eventos;
-* los eventos ocurren dentro de un intervalo temporal o espacial;
+Si $X$ representa el número de defectos encontrados en cien metros, podemos plantear
+
+$$
+X\sim\operatorname{Poisson}(4).
+$$
+
+Para una longitud de $200$ metros, el número esperado de defectos sería
+
+$$
+\lambda=8,
+$$
+
+por lo que
+
+$$
+X\sim\operatorname{Poisson}(8).
+$$
+
+<br><br>
+
+### 9.5. Eventos biológicos
+
+En determinados modelos simplificados de genética, el número de mutaciones observadas en una región puede modelarse mediante una distribución de Poisson.
+
+Por ejemplo, si el número esperado de mutaciones en una región determinada es
+
+$$
+\lambda=3,
+$$
+
+podemos utilizar
+
+$$
+X\sim\operatorname{Poisson}(3)
+$$
+
+para representar el número de mutaciones observadas.
+
+Es importante señalar que la distribución de Poisson no debe utilizarse automáticamente cada vez que una variable representa un conteo. La elección del modelo depende de los mecanismos que generan los eventos y de los supuestos que podamos considerar razonables.
+
+<br><br>
+
+## 10. ¿Cuándo es razonable utilizar un modelo de Poisson?
+
+El modelo de Poisson es particularmente apropiado cuando estamos interesados en contar eventos que ocurren durante un intervalo de tiempo o dentro de una región espacial y cuando podemos considerar razonables determinados supuestos.
+
+Entre ellos se encuentran:
+
+* los eventos ocurren individualmente;
+* los eventos pueden considerarse independientes;
 * existe una tasa promedio de ocurrencia aproximadamente constante;
-* la ocurrencia de un evento no afecta directamente la ocurrencia de otro;
-* en intervalos muy pequeños es poco probable que ocurran múltiples eventos simultáneamente.
+* la probabilidad de que ocurran varios eventos exactamente al mismo tiempo es muy pequeña;
+* el número de eventos en intervalos disjuntos puede considerarse independiente.
 
-Estas condiciones constituyen una idealización del fenómeno real.
+Estos supuestos constituyen una idealización del fenómeno real.
 
-En una aplicación concreta, debemos preguntarnos siempre:
+Por ejemplo, supongamos que una tienda recibe clientes con una tasa promedio de $10$ clientes por hora durante la mañana y $30$ clientes por hora durante la tarde.
 
-> ¿Son razonables los supuestos del modelo para el fenómeno que estamos estudiando?
-
-Por ejemplo, si la llegada de clientes a una tienda depende fuertemente de la hora del día, una única tasa constante $\lambda$ probablemente no sea suficiente.
-
-En ese caso podríamos necesitar un modelo con una tasa dependiente del tiempo,
+En este caso, utilizar una única tasa constante
 
 $$
-\lambda=\lambda(t),
+\lambda=20
 $$
 
-lo cual conduce a modelos de Poisson no homogéneos. Este tipo de extensión queda fuera del alcance de este capítulo.
+durante todo el día podría ser una mala representación del fenómeno.
 
-De manera similar, si los eventos presentan dependencia entre sí, el modelo de Poisson básico puede dejar de ser adecuado.
+Podría ser más apropiado considerar una tasa dependiente del tiempo:
 
-Por tanto, una parte esencial del modelamiento consiste no solamente en calcular probabilidades, sino en **evaluar las hipótesis que justifican el modelo**.
+$$
+\lambda=\lambda(t).
+$$
+
+Este tipo de modelo conduce a procesos de Poisson no homogéneos, que constituyen una extensión del modelo estudiado en este capítulo.
+
+De manera similar, si la ocurrencia de un evento modifica significativamente la probabilidad de que ocurra el siguiente, el supuesto de independencia puede dejar de ser apropiado.
+
+Por tanto, construir un modelo de Poisson no consiste simplemente en aplicar una fórmula. Es necesario analizar si las hipótesis del modelo son compatibles con el fenómeno que queremos representar.
 
 <br><br>
 
-## Comparación con los modelos de Markov
+## 11. Comparación con los modelos de Markov
 
-Los modelos de Markov y los modelos de Poisson son ambos modelos estocásticos, pero responden a preguntas diferentes.
+Los modelos de Markov y los modelos de Poisson pertenecen ambos a la familia de modelos estocásticos, pero describen aspectos diferentes de un sistema.
 
-En un modelo de Markov nos interesa principalmente la evolución de un sistema entre diferentes estados. Por ejemplo,
+En un modelo de Markov, el objeto principal es el **estado del sistema** y las probabilidades de transición entre estados.
+
+Por ejemplo,
 
 $$
 X_0\rightarrow X_1\rightarrow X_2\rightarrow\cdots
 $$
 
-donde las probabilidades de transición determinan la evolución aleatoria.
+representa una evolución aleatoria en la cual el sistema cambia de estado.
 
-En un modelo de Poisson nos interesa principalmente el número de eventos que ocurren:
+En un modelo de Poisson, el objeto principal es el **número de eventos** que ocurren durante un intervalo:
 
 $$
 N(t)=\text{número de eventos ocurridos hasta el tiempo }t.
 $$
 
-Podemos resumir la diferencia de la siguiente manera:
+Podemos resumir la diferencia mediante la siguiente tabla:
 
-| Modelo                | Objeto principal            | Pregunta                              |
-| --------------------- | --------------------------- | ------------------------------------- |
-| Markov                | Estado del sistema          | ¿En qué estado estará el sistema?     |
-| Poisson               | Número de eventos           | ¿Cuántos eventos ocurrirán?           |
-| Poisson + exponencial | Eventos y tiempos de espera | ¿Cuándo ocurrirá el siguiente evento? |
+| Modelo                           | Objeto principal  | Pregunta                                               |
+| -------------------------------- | ----------------- | ------------------------------------------------------ |
+| Modelo discreto determinista     | Estado o cantidad | ¿Cómo cambia el sistema?                               |
+| Modelo continuo determinista     | Estado o cantidad | ¿Cómo evoluciona continuamente?                        |
+| Modelo de Markov                 | Estado aleatorio  | ¿En qué estado estará el sistema?                      |
+| Modelo de Poisson                | Número de eventos | ¿Cuántos eventos ocurrirán?                            |
+| Proceso de Poisson + exponencial | Eventos y tiempos | ¿Cuántos eventos ocurren y cuándo ocurre el siguiente? |
 
-Esta comparación permite apreciar que los modelos estocásticos constituyen una familia amplia de herramientas. No existe un único modelo estocástico apropiado para todos los fenómenos.
+Los modelos de Markov y Poisson no deben entenderse como modelos que compiten entre sí. Son herramientas diferentes que pueden resultar apropiadas para diferentes tipos de fenómenos.
 
-Los modelos de Markov son particularmente útiles cuando el concepto de **estado** es central. Los modelos de Poisson son particularmente útiles cuando el fenómeno puede entenderse como una colección de **eventos que ocurren aleatoriamente**.
+En particular, el modelo de Markov resulta natural cuando el concepto de **estado** es central, mientras que el modelo de Poisson resulta natural cuando el fenómeno puede describirse mediante la ocurrencia de **eventos**.
 
 <br><br>
 
-## Ideas principales
+## 12. Ideas principales
 
-En este capítulo estudiamos una clase de modelos estocásticos orientados al conteo de eventos.
+En este capítulo estudiamos los modelos de Poisson como una herramienta para representar la ocurrencia aleatoria de eventos.
 
-Las ideas fundamentales pueden resumirse de la siguiente manera.
+Las ideas fundamentales son:
 
-1. Una variable aleatoria discreta puede utilizarse para representar cantidades obtenidas mediante conteo.
+1. La distribución binomial permite contar el número de éxitos en un número fijo de ensayos independientes.
 
-2. La distribución binomial describe el número de éxitos en un número fijo de ensayos independientes.
-
-3. La distribución de Poisson aparece naturalmente como aproximación de la binomial cuando el número de ensayos es grande, la probabilidad de éxito es pequeña y $np=\lambda$ permanece constante.
-
-4. Una variable de Poisson satisface
+2. La distribución de Poisson aparece como una aproximación de la distribución binomial cuando el número de ensayos es grande, la probabilidad de éxito es pequeña y
 
 $$
+np=\lambda
+$$
+
+permanece constante.
+
+3. La distribución de Poisson está dada por
+
+$$
+\boxed{
 P(X=k)
 =
 e^{-\lambda}
 \frac{\lambda^k}{k!}.
+}
 $$
 
-5. Para una variable de Poisson,
-
-$$
-E[X]=\lambda,
-\qquad
-\operatorname{Var}(X)=\lambda.
-$$
-
-6. Si los eventos ocurren mediante un proceso de Poisson con tasa $\lambda$, entonces el número de eventos durante un intervalo de longitud $t$ satisface
-
-$$
-N(t)\sim\operatorname{Poisson}(\lambda t).
-$$
-
-7. El parámetro $\lambda$ representa una **tasa de ocurrencia**, mientras que $\lambda t$ representa el número esperado de eventos durante un intervalo de duración $t$.
-
-8. Los tiempos entre eventos de un proceso de Poisson siguen una distribución exponencial.
-
-9. Si observamos datos provenientes de una distribución de Poisson, el estimador de máxima verosimilitud de $\lambda$ es
-
-$$
-\hat{\lambda}=\overline{x}.
-$$
-
-10. Los modelos de Poisson pueden simularse computacionalmente y utilizarse para estudiar la variabilidad de los resultados.
-
-El objetivo principal no es solamente aprender una nueva distribución de probabilidad. Lo importante es reconocer una nueva forma de construir modelos matemáticos:
+4. Para una variable de Poisson,
 
 $$
 \boxed{
-\text{fenómeno}
-\rightarrow
-\text{datos}
+E[X]=\lambda,
+\qquad
+\operatorname{Var}(X)=\lambda.
+}
+$$
+
+5. En un proceso de Poisson con tasa $\lambda$,
+
+$$
+\boxed{
+N(t)\sim\operatorname{Poisson}(\lambda t).
+}
+$$
+
+6. $\lambda$ representa una tasa de ocurrencia, mientras que $\lambda t$ representa el número esperado de eventos durante un intervalo de duración $t$.
+
+7. La probabilidad de que ocurra al menos un evento durante un intervalo de duración $t$ es
+
+$$
+\boxed{
+P(N(t)\geq1)=1-e^{-\lambda t}.
+}
+$$
+
+8. Los tiempos entre eventos de un proceso de Poisson siguen una distribución exponencial.
+
+9. Para datos provenientes de una distribución de Poisson, el estimador de máxima verosimilitud de $\lambda$ es
+
+$$
+\boxed{
+\hat{\lambda}=\overline{x}.
+}
+$$
+
+10. La simulación computacional permite generar realizaciones del modelo y comparar sus propiedades empíricas con las predicciones teóricas.
+
+El modelo de Poisson constituye así una nueva herramienta dentro del repertorio de modelos matemáticos estudiados en este libro:
+
+$$
+\boxed{
+\text{modelo}
 \rightarrow
 \text{supuestos}
 \rightarrow
-\text{modelo probabilístico}
-\rightarrow
-\text{estimación}
+\text{parámetros}
 \rightarrow
 \text{predicción}
 \rightarrow
@@ -1544,13 +1570,17 @@ $$
 }
 $$
 
-De esta manera, el modelo de Poisson complementa los modelos deterministas y los modelos de Markov estudiados anteriormente, ampliando el repertorio de herramientas disponibles para representar fenómenos reales.
+A diferencia de los modelos deterministas estudiados anteriormente, el resultado de un modelo de Poisson no es una única trayectoria o un único valor. El modelo proporciona una descripción probabilística de los posibles resultados.
+
+A su vez, a diferencia de los modelos de Markov, en los cuales el interés principal está en la evolución entre estados, los modelos de Poisson se concentran en la ocurrencia y el conteo de eventos.
 
 <br><br>
 
-## Ejercicios
+## 13. Ejercicios
 
-### Ejercicio 1. Distribución de Poisson
+<br><br>
+
+### 13.1. Distribución de Poisson
 
 Sea
 
@@ -1572,7 +1602,9 @@ e. $E[X]$.
 
 f. $\operatorname{Var}(X)$.
 
-### Ejercicio 2. Llegada de clientes
+<br><br>
+
+### 13.2. Llegada de clientes
 
 Una cafetería recibe en promedio $8$ clientes por hora.
 
@@ -1586,7 +1618,9 @@ c. ¿Cuál es la probabilidad de que no llegue ningún cliente durante treinta m
 
 d. ¿Cuál es la probabilidad de que llegue al menos un cliente durante treinta minutos?
 
-### Ejercicio 3. Llamadas telefónicas
+<br><br>
+
+### 13.3. Llamadas telefónicas
 
 Una central recibe en promedio $12$ llamadas por hora.
 
@@ -1598,7 +1632,9 @@ c. Calcule la probabilidad de recibir más de $15$ llamadas.
 
 d. Calcule la probabilidad de no recibir llamadas durante los próximos diez minutos.
 
-### Ejercicio 4. Estimación de $\lambda$
+<br><br>
+
+### 13.4. Estimación de $\lambda$
 
 Durante diez intervalos de una hora se registró el siguiente número de eventos:
 
@@ -1617,7 +1653,9 @@ d. Utilice Python para simular $10,000$ observaciones del modelo estimado.
 
 e. Compare la media y la varianza de la simulación con los valores teóricos.
 
-### Ejercicio 5. Simulación
+<br><br>
+
+### 13.5. Simulación
 
 Utilice Python para generar $10,000$ observaciones de
 
@@ -1628,7 +1666,10 @@ $$
 para
 
 $$
-\lambda=1,\quad 5,\quad 10,\quad 20.
+\lambda=1,\qquad
+\lambda=5,\qquad
+\lambda=10,\qquad
+\lambda=20.
 $$
 
 Para cada caso:
@@ -1637,13 +1678,15 @@ a. calcule la media muestral;
 
 b. calcule la varianza muestral;
 
-c. compare estos valores con la media y varianza teóricas;
+c. compare estos valores con la media y la varianza teóricas;
 
-d. construya las distribuciones empíricas;
+d. construya la distribución empírica;
 
 e. analice cómo cambia la forma de la distribución cuando aumenta $\lambda$.
 
-### Ejercicio 6. Proceso de Poisson
+<br><br>
+
+### 13.6. Proceso de Poisson
 
 Suponga que los eventos ocurren con una tasa
 
@@ -1669,7 +1712,9 @@ $$
 
 e. Repita la simulación varias veces y estudie la variabilidad del número total de eventos.
 
-### Ejercicio 7. Binomial y Poisson
+<br><br>
+
+### 13.7. Binomial y Poisson
 
 Considere
 
@@ -1695,7 +1740,9 @@ d. Compare los resultados.
 
 e. Repita el procedimiento para diferentes valores de $n$ y $p$ manteniendo $np$ constante.
 
-### Ejercicio 8. Evaluación de un modelo
+<br><br>
+
+### 13.8. Evaluación de un modelo
 
 Una empresa afirma que el número de fallas de sus dispositivos puede modelarse mediante una distribución de Poisson.
 
@@ -1717,7 +1764,9 @@ f. discutir si el modelo parece razonable;
 
 g. identificar posibles razones por las cuales los datos podrían alejarse del modelo de Poisson.
 
-### Ejercicio 9. Proyecto computacional
+<br><br>
+
+### 13.9. Proyecto computacional
 
 Seleccione un fenómeno real que pueda describirse mediante el conteo de eventos.
 
@@ -1734,7 +1783,7 @@ Algunas posibilidades son:
 
 Recolecte o utilice un conjunto de datos y realice las siguientes actividades:
 
-1. Defina claramente la variable aleatoria.
+1. Defina claramente el evento que será contado.
 2. Especifique la unidad temporal o espacial utilizada.
 3. Estime el parámetro $\lambda$.
 4. Construya el modelo de Poisson.
@@ -1744,4 +1793,4 @@ Recolecte o utilice un conjunto de datos y realice las siguientes actividades:
 8. Discuta las hipótesis necesarias para que el modelo sea razonable.
 9. Indique posibles limitaciones del modelo.
 
-El propósito del ejercicio no es solamente obtener un valor para $\lambda$, sino recorrer el proceso completo de construcción y evaluación de un modelo estocástico.
+El propósito del ejercicio no es solamente obtener un valor para $\lambda$, sino recorrer el proceso completo de construcción, análisis y evaluación de un modelo estocástico.
