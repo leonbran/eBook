@@ -106,8 +106,7 @@ $$
 Una forma natural de medir qué tan bien se ajusta una recta a los datos consiste en sumar los cuadrados de los residuos:
 
 $$
-E(m,b)
-=
+E(m,b) =
 \sum_{i=1}^{n}
 \left[y_i-(mx_i+b)\right]^2.
 $$
@@ -196,8 +195,7 @@ $$
 que minimiza
 
 $$
-E(m,b)
-=
+E(m,b) =
 \sum_{i=1}^{n}
 \left[y_i-(mx_i+b)\right]^2.
 $$
@@ -228,13 +226,8 @@ $$
 donde
 
 $$
-\bar{x}
-=
-\frac{1}{n}
-\sum_{i=1}^{n}x_i,
-\qquad
-\bar{y}
-=
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n}x_i,
+\qquad \bar{y} =
 \frac{1}{n}
 \sum_{i=1}^{n}y_i.
 $$
@@ -314,10 +307,8 @@ $$
 De donde
 
 $$
-\sum_{i=1}^{n}y_i
--
-m\sum_{i=1}^{n}x_i
--
+\sum_{i=1}^{n}y_i -
+m\sum_{i=1}^{n}x_i -
 nb
 =0.
 $$
@@ -325,8 +316,7 @@ $$
 Así,
 
 $$
-m\sum_{i=1}^{n}x_i+nb
-=
+m\sum_{i=1}^{n}x_i+nb =
 \sum_{i=1}^{n}y_i.
 $$
 
