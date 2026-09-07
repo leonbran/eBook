@@ -35,6 +35,7 @@ El curso está organizado en 7 unidades. Estas unidades presentan una progresió
 
 
 <br>
+
 ### Unidad 1. Elementos de programación
 
 Introduciremos las herramientas computacionales necesarias para implementar y explorar modelos matemáticos. Mediante **Python** y **Google Colab**, desarrollaremos habilidades básicas de programación, cálculo numérico, manejo de datos y visualización.
@@ -103,7 +104,6 @@ Estudiaremos modelos para describir la **ocurrencia aleatoria de eventos** y su 
 
 > **¿Cómo podemos modelar y predecir la ocurrencia de eventos aleatorios?**
 
-> **¿Cómo incorporamos la incertidumbre en un modelo matemático?**
 
 <br><br>
 
