@@ -1,3 +1,7 @@
+```{tableofcontents}
+:maxdepth: 1
+```
+
 # Introducción
 
 El **modelamiento matemático** es una herramienta fundamental para estudiar fenómenos y sistemas provenientes de las ciencias naturales, la ingeniería, las ciencias sociales, la economía y muchas otras áreas del conocimiento. Su propósito es construir representaciones matemáticas que permitan comprender, analizar, simular y, en determinadas circunstancias, predecir el comportamiento de un sistema.
