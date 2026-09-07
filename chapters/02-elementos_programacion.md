@@ -4,6 +4,10 @@ En el modelamiento matemático, las herramientas computacionales cumplen un pape
 
 En este curso utilizaremos principalmente **Python** y **Google Colab** para realizar estas tareas.
 
+
+
+## 1. El computador como laboratorio matemático
+
 El objetivo de este capítulo no es estudiar Python como un lenguaje de programación de manera independiente. En cambio, aprenderemos las herramientas computacionales necesarias para **construir, analizar, simular y visualizar modelos matemáticos**.
 
 La idea central será:
@@ -12,15 +16,8 @@ La idea central será:
 
 A lo largo del capítulo utilizaremos ejemplos sencillos para aprender las herramientas que posteriormente emplearemos en las diferentes unidades del curso.
 
-<br><br>
 
-
-## 1. El computador como laboratorio matemático
-
-Cuando trabajamos con un modelo matemático, podemos realizar diferentes tipos de experimentos.
-
-Por ejemplo, podemos necesitar calcular valores de una función, construir una tabla de valores, representar gráficamente una expresión matemática, analizar datos o explorar cómo cambia un resultado cuando modificamos determinados parámetros.
-
+Cuando trabajamos con un modelo matemático, podemos realizar diferentes tipos de experimentos. Por ejemplo, podemos necesitar calcular valores de una función, construir una tabla de valores, representar gráficamente una expresión matemática, analizar datos o explorar cómo cambia un resultado cuando modificamos determinados parámetros. 
 Matemáticamente podemos realizar muchas de estas tareas de manera analítica. Sin embargo, un computador permite realizar rápidamente cálculos que pueden resultar tediosos o imposibles de hacer manualmente.
 
 Podemos utilizarlo para:
@@ -41,353 +38,240 @@ En este curso utilizaremos esta perspectiva de manera sistemática.
 <br><br>
 
 
+## 2. Algoritmos
 
-## 2. Algoritmos: del procedimiento matemático al computador
+### 2.1. Concepto de algoritmo
 
-Cuando resolvemos un problema matemático, generalmente seguimos una serie de pasos para obtener un resultado. Por ejemplo, para calcular el promedio de un conjunto de números debemos sumar sus elementos y dividir el resultado entre la cantidad de elementos.
+Un **algoritmo** es un conjunto finito y ordenado de instrucciones que permite resolver un problema o realizar una tarea. En programación, el algoritmo describe la lógica de la solución antes de implementarla en un lenguaje de programación como Python.
 
-Cuando queremos que un computador realice este procedimiento, necesitamos describir de manera precisa qué debe hacer y en qué orden debe hacerlo.
+En términos generales, un algoritmo puede representarse mediante:
 
-Una forma de expresar esta idea es mediante un algoritmo.
+$$
+\text{Entrada} \longrightarrow \text{Procesamiento} \longrightarrow \text{Salida}.
+$$
 
-Un algoritmo es una secuencia finita y ordenada de instrucciones que permite resolver un problema o realizar una tarea a partir de unos datos de entrada.
+Por ejemplo, para calcular el área de un rectángulo:
 
-Podemos pensar en un algoritmo como una receta matemática: especifica los datos que necesitamos, las operaciones que debemos realizar y la manera de obtener el resultado.
+1. Leer la longitud.
+2. Leer el ancho.
+3. Calcular el área mediante $A = \text{longitud}\times\text{ancho}$.
+4. Mostrar el resultado.
 
-Por ejemplo, supongamos que queremos calcular el promedio de $n$ números
+Es importante distinguir entre **algoritmo** y **programa**. El algoritmo describe cómo resolver el problema y es independiente del lenguaje utilizado; el programa es la implementación de ese algoritmo en un lenguaje específico.
 
-$$ x_1,x_2,\ldots,x_n. $$
+### 2.2. Estructuras fundamentales
 
-Matemáticamente, sabemos que el promedio está dado por
+Los algoritmos se construyen a partir de tres estructuras fundamentales:
 
-$$ \bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i. $$
+**Secuencia:** las instrucciones se ejecutan una después de otra.
 
-Pero para que un computador pueda realizar este cálculo, necesitamos convertir la expresión matemática en una secuencia de pasos.
+Por ejemplo, para convertir grados Celsius a Fahrenheit:
 
-Podemos describir el procedimiento de la siguiente manera:
-
-Recibir los números $x_1,x_2,\ldots,x_n$.
-Inicializar una variable para almacenar la suma.
-Recorrer los números uno por uno.
-Agregar cada número a la suma.
-Dividir la suma entre $n$.
-Mostrar el resultado.
-
-Esta secuencia constituye un algoritmo para calcular el promedio.
-
-<br>
-
-### 2.1 Características de un algoritmo
-
-Un algoritmo debe describir un procedimiento de manera suficientemente precisa para que pueda ser ejecutado sin ambigüedades.
-
-Entre sus características fundamentales podemos destacar:
-
-Entrada: los datos que necesita el procedimiento.
-Proceso: las operaciones que deben realizarse.
-Salida: el resultado que se desea obtener.
-Orden: las instrucciones deben ejecutarse siguiendo una secuencia determinada.
-Finitud: el procedimiento debe terminar después de un número finito de pasos.
-Precisión: cada instrucción debe estar definida de manera clara.
-
-Por ejemplo, para calcular el promedio de una colección de datos:
-
-Entrada:
-    x₁, x₂, ..., xₙ
-
-Proceso:
-    calcular la suma
-    dividir entre n
-
-Salida:
-    promedio
-
-Esta estructura de entrada, proceso y salida será recurrente cuando construyamos algoritmos para problemas de modelamiento matemático.
-
-<br>
-
-### 2.2 Algoritmos y matemáticas
-
-Un algoritmo no es necesariamente un programa.
-
-El algoritmo describe el procedimiento que queremos realizar, mientras que un programa es una implementación de ese procedimiento utilizando un lenguaje de programación.
-
-Podemos visualizar la relación de la siguiente manera:
-
-Problema
-   ↓
-Procedimiento matemático
-   ↓
-Algoritmo
-   ↓
-Programa
-   ↓
-Computador
-   ↓
-Resultado
-
-Por ejemplo, consideremos la expresión
-
-$$ f(x)=x^2+2x+1. $$
-
-Si queremos evaluar la función en un valor dado de $x$, podemos describir el procedimiento como:
-
-Recibir el valor de $x$.
-Calcular $x^2$.
-Calcular $2x$.
-Sumar $x^2$, $2x$ y $1$.
-Mostrar el resultado.
-
-Posteriormente podremos implementar este algoritmo en Python:
-
-x = 3
-
-y = x**2 + 2*x + 1
-
-print(y)
-
-El código es entonces una forma concreta de expresar el algoritmo para que pueda ser ejecutado por el computador.
-
-<br>
-
-### 2.3 Pseudocódigo
-
-Una manera de diseñar un algoritmo antes de escribir el programa es utilizar pseudocódigo.
-
-El pseudocódigo utiliza un lenguaje sencillo, cercano al lenguaje natural, para describir las instrucciones de un algoritmo sin preocuparse todavía por las reglas particulares de Python u otro lenguaje de programación.
-
-Por ejemplo, el algoritmo para calcular el promedio puede escribirse como:
-
+```text
 INICIO
+    Leer C
+    F ← (9/5) * C + 32
+    Escribir F
+FIN
+```
 
+**Selección:** permite tomar decisiones dependiendo de una condición.
+
+Por ejemplo, determinar si una persona es mayor de edad:
+
+```text
+INICIO
+    Leer edad
+
+    SI edad >= 18 ENTONCES
+        Escribir "Mayor de edad"
+    SINO
+        Escribir "Menor de edad"
+    FIN SI
+FIN
+```
+
+**Repetición:** permite ejecutar un conjunto de instrucciones varias veces.
+
+Por ejemplo, calcular la suma de los números de $1$ hasta $n$:
+
+```text
+INICIO
     Leer n
     suma ← 0
 
-    Para i desde 1 hasta n:
-        Leer x
-        suma ← suma + x
+    PARA i ← 1 HASTA n HACER
+        suma ← suma + i
+    FIN PARA
 
-    promedio ← suma / n
-
-    Mostrar promedio
-
+    Escribir suma
 FIN
+```
 
-El pseudocódigo permite concentrarnos en la lógica del procedimiento.
+Estas tres estructuras constituyen la base de la programación estructurada y aparecen posteriormente en lenguajes como Python mediante instrucciones como `if`, `for` y `while`.
 
-Una vez que el algoritmo está correctamente definido, podemos traducirlo a Python:
+### 2.3. Pseudocódigo
 
-n = int(input("Cantidad de números: "))
+El **pseudocódigo** permite describir un algoritmo mediante instrucciones similares a las de un lenguaje de programación, pero sin depender de la sintaxis de un lenguaje particular.
 
-suma = 0
+Su objetivo es expresar claramente la lógica de la solución antes de escribir el programa.
 
-for i in range(n):
-    x = float(input("Ingrese un número: "))
-    suma = suma + x
+Algunas instrucciones habituales son:
 
-promedio = suma / n
+| Instrucción       | Función                                      |
+| ----------------- | -------------------------------------------- |
+| `INICIO` / `FIN`  | Delimitar el algoritmo                       |
+| `Leer`            | Recibir un dato                              |
+| `Escribir`        | Mostrar un resultado                         |
+| `←`               | Asignar un valor                             |
+| `SI ... ENTONCES` | Tomar una decisión                           |
+| `SINO`            | Especificar el caso contrario                |
+| `PARA ... HASTA`  | Repetir un número determinado de veces       |
+| `MIENTRAS`        | Repetir mientras una condición sea verdadera |
+
+Por ejemplo, para determinar cuál de dos números es mayor:
+
+```text
+INICIO
+    Leer a
+    Leer b
+
+    SI a > b ENTONCES
+        Escribir "a es mayor"
+    SINO SI b > a ENTONCES
+        Escribir "b es mayor"
+    SINO
+        Escribir "Los números son iguales"
+    FIN SI
+FIN
+```
+
+El pseudocódigo no pretende ser ejecutado directamente por el computador. Su función es ayudar a **diseñar, analizar y comunicar la solución**.
+
+### 2.4. Diagramas de flujo
+
+Un **diagrama de flujo** representa gráficamente un algoritmo mediante símbolos conectados por flechas.
+
+Los principales símbolos son:
+
+| Símbolo       | Significado         |
+| ------------- | ------------------- |
+| Óvalo         | Inicio o final      |
+| Rectángulo    | Proceso o cálculo   |
+| Paralelogramo | Entrada o salida    |
+| Rombo         | Decisión            |
+| Flecha        | Dirección del flujo |
+
+Por ejemplo, el algoritmo para determinar si un número es positivo, negativo o cero puede representarse esquemáticamente como:
+
+```text
+       ┌─────────┐
+       │ INICIO  │
+       └────┬────┘
+            │
+            ▼
+      ╱───────────╲
+     ╱    Leer x   ╲
+     ╲             ╱
+      ╲───────────╱
+            │
+            ▼
+       ┌─────────┐
+       │  x > 0? │
+       └────┬────┘
+          Sí│   │No
+            │   ▼
+            │ ┌─────────┐
+            │ │  x < 0? │
+            │ └────┬────┘
+            │    Sí│  │No
+            │      │  │
+            ▼      ▼  ▼
+       Positivo Negativo Cero
+            │      │  │
+            └───┬──┴──┘
+                ▼
+           ┌─────────┐
+           │   FIN   │
+           └─────────┘
+```
+
+Los diagramas de flujo son especialmente útiles para visualizar el orden de ejecución y las diferentes rutas que puede seguir un algoritmo.
+
+### 2.5. Del algoritmo al programa
+
+El proceso de programación puede entenderse como una secuencia de etapas:
+
+```text
+Problema
+   ↓
+Comprensión del problema
+   ↓
+Identificación de entradas y salidas
+   ↓
+Diseño del algoritmo
+   ↓
+Pseudocódigo / Diagrama de flujo
+   ↓
+Implementación en Python
+   ↓
+Prueba y corrección
+```
+
+Por ejemplo, para calcular el promedio de tres notas y determinar si un estudiante aprueba:
+
+```text
+INICIO
+    Leer n1
+    Leer n2
+    Leer n3
+
+    promedio ← (n1 + n2 + n3) / 3
+
+    Escribir promedio
+
+    SI promedio >= 3.0 ENTONCES
+        Escribir "Aprobado"
+    SINO
+        Escribir "No aprobado"
+    FIN SI
+FIN
+```
+
+La implementación correspondiente en Python sería:
+
+```python
+n1 = float(input("Nota 1: "))
+n2 = float(input("Nota 2: "))
+n3 = float(input("Nota 3: "))
+
+promedio = (n1 + n2 + n3) / 3
 
 print("Promedio:", promedio)
 
-Observemos que la estructura lógica del algoritmo permanece esencialmente igual. Lo que cambia es la forma de expresar las instrucciones.
-
-<br>
-
-### 2.4 Diagramas de flujo
-
-Otra manera de representar un algoritmo es mediante un diagrama de flujo.
-
-Un diagrama de flujo representa gráficamente las diferentes etapas de un procedimiento y las relaciones entre ellas.
-
-Los elementos más comunes son:
-
-┌─────────────┐
-│    Inicio   │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│    Entrada  │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│   Proceso   │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│    Salida   │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│     Fin     │
-└─────────────┘
-
-En un diagrama de flujo, las flechas indican el orden en que se ejecutan las diferentes instrucciones.
-
-Cuando el algoritmo incluye decisiones, podemos representar una condición:
-
-          ┌─────────────┐
-          │ ¿condición? │
-          └──────┬──────┘
-             Sí  │  No
-             ▼   │   ▼
-        ┌────────┐ ┌────────┐
-        │ Acción │ │ Acción │
-        │   A    │ │   B    │
-        └────┬───┘ └───┬────┘
-             │         │
-             └────┬────┘
-                  ▼
-              Continuar
-
-Los diagramas de flujo son particularmente útiles cuando un procedimiento contiene decisiones, repeticiones o diferentes caminos posibles.
-
-<br>
-
-### 2.5 Algoritmos con decisiones
-
-Muchos problemas matemáticos requieren tomar decisiones dependiendo de los datos.
-
-Por ejemplo, podemos querer determinar si un número es positivo, negativo o cero.
-
-El procedimiento puede describirse como:
-
-INICIO
-
-    Leer x
-
-    Si x > 0:
-        Mostrar "positivo"
-
-    Si x < 0:
-        Mostrar "negativo"
-
-    Si x = 0:
-        Mostrar "cero"
-
-FIN
-
-En Python podemos implementarlo mediante:
-
-x = float(input("Ingrese un número: "))
-
-if x > 0:
-    print("positivo")
-elif x < 0:
-    print("negativo")
+if promedio >= 3.0:
+    print("Aprobado")
 else:
-    print("cero")
+    print("No aprobado")
+```
 
-La estructura if, elif y else permite implementar en Python las decisiones que aparecen en el algoritmo.
+Este proceso muestra que **programar no consiste simplemente en escribir código**. Una parte fundamental consiste en diseñar correctamente la solución antes de implementarla.
 
-<br>
+### 2.6. Características de un buen algoritmo
 
-### 2.6 Algoritmos con repeticiones
+Un buen algoritmo debe cumplir con varias características fundamentales:
 
-Otros problemas requieren repetir una operación varias veces.
+* **Precisión:** cada instrucción debe estar claramente definida y no debe ser ambigua.
+* **Finitud:** debe terminar después de un número finito de pasos.
+* **Orden:** las instrucciones deben seguir una secuencia lógica.
+* **Claridad:** debe ser fácil de comprender y comunicar.
+* **Efectividad:** cada instrucción debe poder ejecutarse mediante operaciones concretas.
+* **Entrada bien definida:** debe especificar claramente los datos que necesita.
+* **Salida bien definida:** debe producir resultados claramente identificables.
+* **Generalidad:** debe resolver una clase de problemas y no únicamente un caso particular.
+* **Corrección:** debe producir los resultados esperados para las entradas válidas.
 
-Por ejemplo, supongamos que queremos calcular la suma
-
-$$ S=\sum_{i=1}^{n}i. $$
-
-Podemos describir el algoritmo mediante:
-
-INICIO
-
-    Leer n
-    suma ← 0
-
-    Para i desde 1 hasta n:
-        suma ← suma + i
-
-    Mostrar suma
-
-FIN
-
-Y podemos implementarlo en Python:
-
-n = 10
-suma = 0
-
-for i in range(1, n + 1):
-    suma = suma + i
-
-print(suma)
-
-La estructura repetitiva del algoritmo se traduce en Python mediante un ciclo for.
-
-Las repeticiones son especialmente importantes en el modelamiento matemático, pues muchas simulaciones requieren aplicar repetidamente una misma regla.
-
-<br>
-2.7 Diseñar antes de programar
-
-Una práctica recomendable es diseñar el algoritmo antes de escribir el código.
-
-Esto permite separar dos preguntas diferentes:
-
-¿Qué procedimiento debemos realizar para resolver el problema?
-¿Cómo escribimos ese procedimiento en Python?
-
-La primera pregunta corresponde al diseño del algoritmo. La segunda corresponde a su implementación.
-
-Por ejemplo:
-
-Problema matemático
-        ↓
-¿Qué queremos calcular?
-        ↓
-Diseño del algoritmo
-        ↓
-Pseudocódigo / diagrama de flujo
-        ↓
-Implementación en Python
-        ↓
-Ejecución
-        ↓
-Análisis del resultado
-
-Esta separación ayuda a detectar errores de razonamiento antes de enfrentarnos a errores de programación.
-
-Además, un mismo algoritmo puede implementarse posteriormente en diferentes lenguajes de programación.
-
-<br>
-
-### 2.8 Algoritmos en el modelamiento matemático
-
-En el modelamiento matemático, los algoritmos adquieren una importancia especial porque muchos modelos no pueden resolverse simplemente mediante una fórmula.
-
-Por ejemplo, podemos tener una regla de evolución
-
-$$ x_{n+1}=f(x_n), $$
-
-y querer calcular una sucesión
-
-$$ x_0,x_1,x_2,\ldots,x_N. $$
-
-El modelo matemático proporciona la regla de evolución, pero necesitamos un algoritmo que indique cómo utilizarla:
-
-INICIO
-
-    Definir x₀
-    Definir N
-
-    Para n desde 0 hasta N-1:
-
-        calcular xₙ₊₁ = f(xₙ)
-
-        guardar xₙ₊₁
-
-    Mostrar resultados
-
-FIN
-
-Posteriormente este algoritmo puede implementarse en Python y utilizarse para realizar experimentos computacionales.
-
-Esta relación entre modelo matemático, algoritmo y programa será fundamental en las siguientes unidades del curso.
-
+En consecuencia, diseñar un algoritmo implica mucho más que enumerar instrucciones: requiere **comprender el problema, organizar una estrategia de solución, verificarla y expresarla de manera clara y precisa**. Estas habilidades constituyen una parte fundamental del pensamiento algorítmico y son la base para aprender a programar.
 
 
 
