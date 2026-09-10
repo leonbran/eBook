@@ -18,17 +18,16 @@ project:
   toc:
     - file: intro.md
     - file: chapters/01-introduccion.md
-    - file: chapters/02-elementos_programacion.md
-    - file: chapters/03-modelos por ajuste.ipynb
+    - file: chapters/02_elementos_de_programacion.ipynb
+    - file: chapters/03_modelos_por_ajuste.ipynb
     - file: chapters/04-modelos_discretos.md
-    - file: chapters/05-modelos_continuos.md
-    - file: chapters/06-modelos_de_markov.md
-    - file: chapters/07-modelos_de_poisson.md
+  
 
 site:
   template: book-theme
   options:
     logo: logo_eBook2.jpg
     logo_text: Introducción al Modelamiento Matemático
+    downloads: false
 
     
