@@ -1,16 +1,16 @@
+---
+downloads: []
+---
+
 # Generalidades del curso
 
-<br>
+
 
 Las matemáticas permiten construir representaciones de fenómenos y sistemas presentes en la naturaleza, la ciencia, la ingeniería, la economía y la sociedad. El **modelamiento matemático** consiste en establecer conexiones entre estos fenómenos y estructuras matemáticas que permitan describirlos, analizarlos y comprenderlos. Un modelo no es una copia exacta de la realidad, sino una **representación simplificada**, construida a partir de determinados supuestos para capturar los aspectos relevantes de un fenómeno y responder preguntas concretas. Por ello, modelar implica identificar variables, establecer relaciones, formular supuestos, estimar parámetros y analizar las consecuencias del modelo.
 
 > **Modelar es simplificar para comprender.**
 
 En este curso estudiaremos diferentes familias de modelos matemáticos y desarrollaremos herramientas para su **construcción, análisis, interpretación y simulación computacional**. La calidad de un modelo dependerá de su capacidad para representar adecuadamente los aspectos relevantes del fenómeno para el propósito que se persigue, no de la cantidad de detalles que incorpore. La programación será una herramienta transversal que nos permitirá experimentar con los modelos, trabajar con datos, realizar simulaciones, visualizar resultados y explorar fenómenos cuyo comportamiento puede ser difícil de estudiar únicamente mediante métodos analíticos.
-
-
-
-<br>
 
 
 Objetivos del curso
@@ -25,16 +25,13 @@ Al finalizar el curso, se espera que el estudiante pueda:
 - Utilizar el lenguaje de programación Python para implementar algoritmos, realizar simulaciones y visualizar resultados.
 - Interpretar los resultados de un modelo y reconocer su alcance y limitaciones.
 
-<br><br>
-
-
 
 ## Estructura del curso
 
 El curso está organizado en 7 unidades. Estas unidades presentan una progresión desde la construcción básica de modelos hasta la incorporación de dinámica e incertidumbre. A continuación describimos brevemente la temática de cada unidad.
 
 
-<br>
+
 
 ### Unidad 1. Elementos de programación
 
@@ -44,7 +41,7 @@ Introduciremos las herramientas computacionales necesarias para implementar y ex
 
 > **¿Cómo podemos utilizar un computador para construir, explorar y comprender un modelo matemático?**
 
-<br>
+
 
 ### Unidad 2. Introducción al modelamiento matemático
 
@@ -54,7 +51,6 @@ Estudiaremos qué es un modelo matemático y cómo se construye a partir de un f
 
 > **¿Cómo podemos transformar una pregunta sobre un fenómeno en un problema matemático?**
 
-<br>
 
 ### Unidad 3. Modelos por regresión
 
@@ -64,7 +60,7 @@ Estudiaremos modelos construidos a partir de datos. Introduciremos la regresión
 
 > **¿Cómo podemos construir un modelo matemático a partir de datos?**
 
-<br>
+
 
 ### Unidad 4. Modelos discretos
 
@@ -74,7 +70,7 @@ Estudiaremos sistemas cuyo estado evoluciona en pasos discretos mediante **ecuac
 
 > **¿Cómo evoluciona un sistema cuando observamos su estado paso a paso?**
 
-<br>
+
 
 ### Unidad 5. Modelos continuos
 
@@ -84,7 +80,7 @@ Estudiaremos sistemas cuya evolución se describe mediante **ecuaciones diferenc
 
 > **¿Cómo podemos describir matemáticamente la evolución continua de un sistema?**
 
-<br>
+
 
 ### Unidad 6. Modelos de Markov
 
@@ -94,7 +90,6 @@ Estudiaremos una clase de modelos estocásticos en los que la evolución de un s
 
 > **¿Cómo podemos modelar la evolución de un sistema cuando existe incertidumbre en sus transiciones?**
 
-<br>
 
 ### Unidad 7. Modelos de Poisson
 
@@ -105,9 +100,7 @@ Estudiaremos modelos para describir la **ocurrencia aleatoria de eventos** y su 
 > **¿Cómo podemos modelar y predecir la ocurrencia de eventos aleatorios?**
 
 
-<br><br>
-
-
+<br>
 
 
 ## Sobre estas notas de clase
