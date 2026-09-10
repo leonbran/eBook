@@ -18,7 +18,7 @@ project:
   toc:
     - file: intro.md
     - file: chapters/01-introduccion.md
-    - file: chapters/02_elementos_programacion.md
+    - file: chapters/02_elementos_programacion.ipynb
     - file: chapters/03_modelos_por_ajuste.ipynb
     - file: chapters/04-modelos_discretos.md
   
