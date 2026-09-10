@@ -13,7 +13,7 @@ Las matemáticas permiten construir representaciones de fenómenos y sistemas pr
 En este curso estudiaremos diferentes familias de modelos matemáticos y desarrollaremos herramientas para su **construcción, análisis, interpretación y simulación computacional**. La calidad de un modelo dependerá de su capacidad para representar adecuadamente los aspectos relevantes del fenómeno para el propósito que se persigue, no de la cantidad de detalles que incorpore. La programación será una herramienta transversal que nos permitirá experimentar con los modelos, trabajar con datos, realizar simulaciones, visualizar resultados y explorar fenómenos cuyo comportamiento puede ser difícil de estudiar únicamente mediante métodos analíticos.
 
 
-Objetivos del curso
+## Objetivos del curso
 
 Al finalizar el curso, se espera que el estudiante pueda:
 
