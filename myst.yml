@@ -18,8 +18,8 @@ project:
   toc:
     - file: intro.md
     - file: chapters/01-introduccion.md
-    - file: chapters/02-elementos_programacion.md
-    - file: chapters/03-modelos por ajuste.ipynb
+    - file: chapters/02_elementos_programacion.md
+    - file: chapters/03_modelos_por_ajuste.ipynb
     - file: chapters/04-modelos_discretos.md
     - file: chapters/05-modelos_continuos.md
     - file: chapters/06-modelos_de_markov.md
