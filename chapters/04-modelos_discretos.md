@@ -1,5 +1,6 @@
-
-
+---
+downloads: []
+---
 
 # Modelos de cambio discreto
 
@@ -41,14 +42,7 @@ En este capítulo estudiaremos las herramientas matemáticas necesarias para con
 La idea central será que una regla aparentemente sencilla de evolución puede generar comportamientos muy diferentes dependiendo de la función $f$, de los parámetros y del estado inicial. 
 
 
-```{contents} Tabla de contenidos
-:local:
-:depth: 3
-:numbered: true
-```
-
-
- <br><br>
+<br><br>
 
 ## Fundamentos matemáticos: sucesiones
 
