@@ -331,7 +331,7 @@ Este modelo permite observar una característica importante del crecimiento comp
 
 <br> 
 
-#### Ejemplo: reproducción de una población
++ #### Ejemplo: reproducción de una población
  
 
 Supongamos que una población tiene $N_n$ individuos en la generación $n$ y que cada generación produce, en promedio, $R$ veces la población anterior.
