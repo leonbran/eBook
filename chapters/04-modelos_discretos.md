@@ -41,7 +41,7 @@ La idea central será que una regla aparentemente sencilla de evolución puede g
 
 ## 1. Fundamentos matemáticos: sucesiones
 
-### 1.1 ¿Qué son las sucesiones?
+###  ¿Qué son las sucesiones?
 
 Una sucesión es una lista ordenada de números
 
@@ -85,7 +85,7 @@ Esta interpretación convierte una sucesión matemática en una descripción de 
 
 Es importante notar que el índice $n$ no necesariamente representa años. Puede representar horas, días, generaciones, periodos financieros, pasos computacionales o cualquier otra unidad temporal apropiada para el problema.
 
-### 1.2 Sucesiones definidas explícitamente
+###  Sucesiones definidas explícitamente
 
 Una sucesión puede definirse mediante una fórmula que permite calcular directamente cualquier término.
 
@@ -116,7 +116,7 @@ $$
 
 Las fórmulas explícitas son particularmente útiles cuando se desea estudiar el comportamiento de una sucesión sin tener que calcular todos sus términos anteriores.
 
-### 1.3 Sucesiones como modelos de evolución
+### Sucesiones como modelos de evolución
 
 Consideremos una población bacteriana que inicialmente contiene $100$ bacterias y que se duplica cada hora.
 
@@ -150,7 +150,7 @@ Este ejemplo muestra que una sucesión puede representar mucho más que una list
 
 También muestra una diferencia importante entre una **observación** y un **modelo**. Si medimos experimentalmente la población cada hora, obtenemos datos. Si suponemos que la población se duplica exactamente en cada intervalo, estamos construyendo un modelo que intenta explicar o aproximar esos datos.
 
-### 1.4 Comportamiento de una sucesión
+### Comportamiento de una sucesión
 
 Al estudiar una sucesión asociada a un fenómeno científico, no solamente nos interesa calcular sus términos. También queremos entender su comportamiento.
 
@@ -203,7 +203,7 @@ La identificación de estos comportamientos será fundamental para interpretar m
 
 ## 2. Sucesiones recurrentes
 
-### 2.1 ¿Qué es una sucesión recurrente?
+### ¿Qué es una sucesión recurrente?
 
 En muchos modelos científicos no conocemos directamente una fórmula para $x_n$. En cambio, conocemos una regla que permite obtener el estado siguiente a partir del estado actual.
 
@@ -259,7 +259,7 @@ $$
 
 La regla de evolución y la condición inicial determinan completamente la trayectoria.
 
-### 2.2 Ejemplo: crecimiento financiero
+#### Ejemplo: crecimiento financiero
 
 Supongamos que una inversión inicial es $P_0$ y que cada periodo aumenta en una tasa $r$.
 
@@ -315,7 +315,7 @@ $$
 
 Este modelo permite observar una característica importante del crecimiento compuesto: el incremento absoluto aumenta con el tiempo aunque la tasa porcentual permanezca constante.
 
-### 2.3 Ejemplo: reproducción de una población
+#### Ejemplo: reproducción de una población
 
 Supongamos que una población tiene $N_n$ individuos en la generación $n$ y que cada generación produce, en promedio, $R$ veces la población anterior.
 
@@ -343,7 +343,7 @@ Es importante interpretar $R$ correctamente. Por ejemplo, si $R=1.2$, esto signi
 
 ## 3. Ecuaciones en diferencias
 
-### 3.1 Cambio discreto
+### Cambio discreto
 
 En un modelo discreto, el cambio entre dos instantes consecutivos se expresa mediante
 
