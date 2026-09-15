@@ -17,10 +17,11 @@ project:
         
   toc:
     - file: intro.md
-    - file: chapters/01-introduccion.md
+    - file: chapters/01_introduccion_al_modelamiento.ipynb
     - file: chapters/02_elementos_de_programacion.ipynb
     - file: chapters/03_modelos_por_ajuste.ipynb
-    - file: chapters/04-modelos_discretos.md
+    - file: chapters/04_modelos_de_cambios_discretos.ipynb
+    - file: chapters/05_Modelos_de_cambio_continuo.ipynb
   
 
 site:
