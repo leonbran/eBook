@@ -35,9 +35,13 @@ Este tipo de ecuaciones aparece en numerosos campos de la ciencia. Algunos ejemp
 
 En este capítulo estudiaremos las herramientas matemáticas necesarias para construir y analizar estos modelos.
 
-La idea central será que una regla aparentemente sencilla de evolución puede generar comportamientos muy diferentes dependiendo de la función $f$, de los parámetros y del estado inicial. Por esta razón, construir un modelo discreto no consiste únicamente en calcular términos de una sucesión: también debemos comprender la dinámica que genera la regla de evolución.
+La idea central será que una regla aparentemente sencilla de evolución puede generar comportamientos muy diferentes dependiendo de la función $f$, de los parámetros y del estado inicial. 
+
+<br>
 
 ## 1. Fundamentos matemáticos: sucesiones
+
+<br>
 
 ### 1.1 ¿Qué son las sucesiones?
 
@@ -116,6 +120,8 @@ $$
 
 Las fórmulas explícitas son particularmente útiles cuando se desea estudiar el comportamiento de una sucesión sin tener que calcular todos sus términos anteriores.
 
+<br>
+
 ### 1.3 Sucesiones como modelos de evolución 
 
 Consideremos una población bacteriana que inicialmente contiene $100$ bacterias y que se duplica cada hora.
@@ -149,6 +155,8 @@ es entonces un modelo matemático de la evolución de la población.
 Este ejemplo muestra que una sucesión puede representar mucho más que una lista de números: puede representar el estado de un sistema a lo largo del tiempo.
 
 También muestra una diferencia importante entre una **observación** y un **modelo**. Si medimos experimentalmente la población cada hora, obtenemos datos. Si suponemos que la población se duplica exactamente en cada intervalo, estamos construyendo un modelo que intenta explicar o aproximar esos datos.
+
+<br>
 
 ### 1.4 Comportamiento de una sucesión
 
@@ -201,7 +209,11 @@ cuando $n\to\infty$.
 
 La identificación de estos comportamientos será fundamental para interpretar modelos de cambio discreto.
 
+<br>
+
 ## 2. Sucesiones recurrentes
+
+<br>
 
 ### 2.1 ¿Qué es una sucesión recurrente?
 
@@ -263,6 +275,9 @@ La regla de evolución y la condición inicial determinan completamente la traye
 
 #### Ejemplo: crecimiento financiero
 
+<br>
+
+
 Supongamos que una inversión inicial es $P_0$ y que cada periodo aumenta en una tasa $r$.
 
 El incremento durante un periodo es
@@ -317,7 +332,11 @@ $$
 
 Este modelo permite observar una característica importante del crecimiento compuesto: el incremento absoluto aumenta con el tiempo aunque la tasa porcentual permanezca constante.
 
+<br>
+
 #### Ejemplo: reproducción de una población
+
+<br>
 
 Supongamos que una población tiene $N_n$ individuos en la generación $n$ y que cada generación produce, en promedio, $R$ veces la población anterior.
 
@@ -343,7 +362,10 @@ Este modelo es una primera aproximación a procesos de reproducción y constituy
 
 Es importante interpretar $R$ correctamente. Por ejemplo, si $R=1.2$, esto significa que cada generación tiene, en promedio, el $120%$ de la población de la generación anterior, es decir, un crecimiento del $20%$ por generación.
 
+<br>
+
 ## 3. Ecuaciones en diferencias
+<br>
 
 ### Cambio discreto
 
