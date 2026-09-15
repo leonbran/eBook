@@ -43,8 +43,7 @@ La idea central será que una regla aparentemente sencilla de evolución puede g
 
 <br> 
 
-### **1.1 ¿Qué son las sucesiones?**
-<br> 
+### **1.1 ¿Qué son las sucesiones?** 
 
 Una sucesión es una lista ordenada de números
 
@@ -91,7 +90,6 @@ Es importante notar que el índice $n$ no necesariamente representa años. Puede
 <br> 
 
 ### 1.2 Sucesiones definidas explícitamente
-<br>  
 
 Una sucesión puede definirse mediante una fórmula que permite calcular directamente cualquier término.
 
@@ -126,7 +124,6 @@ Las fórmulas explícitas son particularmente útiles cuando se desea estudiar e
 
 ### 1.3 Sucesiones como modelos de evolución 
  
-
 Consideremos una población bacteriana que inicialmente contiene $100$ bacterias y que se duplica cada hora.
 
 Después de una hora tendremos
@@ -276,8 +273,7 @@ La regla de evolución y la condición inicial determinan completamente la traye
 
 <br>
 
-#### - Ejemplo: crecimiento financiero 
-<br> 
+* #### Ejemplo: crecimiento financiero 
 
 Supongamos que una inversión inicial es $P_0$ y que cada periodo aumenta en una tasa $r$.
 
