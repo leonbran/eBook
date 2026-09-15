@@ -1,6 +1,9 @@
 ---
 downloads: []
-number_sections: true
+```{contents} Tabla de contenidos
+:local:
+:depth: 3
+:numbered: true
 ---
 
 # Modelos de cambio discreto
