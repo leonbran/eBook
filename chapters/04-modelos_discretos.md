@@ -1,9 +1,4 @@
 
-```{contents} Tabla de contenidos
-:local:
-:depth: 3
-:numbered: true
-```
 
 
 # Modelos de cambio discreto
@@ -44,6 +39,14 @@ Este tipo de ecuaciones aparece en numerosos campos de la ciencia. Algunos ejemp
 En este capítulo estudiaremos las herramientas matemáticas necesarias para construir y analizar estos modelos.
 
 La idea central será que una regla aparentemente sencilla de evolución puede generar comportamientos muy diferentes dependiendo de la función $f$, de los parámetros y del estado inicial. 
+
+
+```{contents} Tabla de contenidos
+:local:
+:depth: 3
+:numbered: true
+```
+
 
  <br><br>
 
