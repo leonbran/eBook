@@ -41,9 +41,9 @@ La idea central será que una regla aparentemente sencilla de evolución puede g
 
 ## 1. Fundamentos matemáticos: sucesiones
 
-<br>
+ 
 
-### 1.1 ¿Qué son las sucesiones?
+### **1.1 ¿Qué son las sucesiones?**
 
 Una sucesión es una lista ordenada de números
 
