@@ -1,7 +1,5 @@
 # Modelos de cambio discreto
 
-## Introducción
-
 En muchos fenómenos científicos, el estado de un sistema no se observa de manera continua, sino en instantes separados de tiempo. Por ejemplo, podemos registrar una población una vez por año, el número de individuos de una colonia bacteriana cada hora, la concentración de una sustancia cada minuto o el número de personas infectadas al final de cada día.
 
 En estos casos resulta natural describir la evolución del sistema mediante una sucesión de estados
@@ -87,7 +85,7 @@ Es importante notar que el índice $n$ no necesariamente representa años. Puede
 
 <br>
 
-###  Sucesiones definidas explícitamente
+### 1.2 Sucesiones definidas explícitamente
 
 Una sucesión puede definirse mediante una fórmula que permite calcular directamente cualquier término.
 
@@ -118,7 +116,7 @@ $$
 
 Las fórmulas explícitas son particularmente útiles cuando se desea estudiar el comportamiento de una sucesión sin tener que calcular todos sus términos anteriores.
 
-### **Sucesiones como modelos de evolución**
+### 1.3 Sucesiones como modelos de evolución 
 
 Consideremos una población bacteriana que inicialmente contiene $100$ bacterias y que se duplica cada hora.
 
@@ -152,7 +150,7 @@ Este ejemplo muestra que una sucesión puede representar mucho más que una list
 
 También muestra una diferencia importante entre una **observación** y un **modelo**. Si medimos experimentalmente la población cada hora, obtenemos datos. Si suponemos que la población se duplica exactamente en cada intervalo, estamos construyendo un modelo que intenta explicar o aproximar esos datos.
 
-### Comportamiento de una sucesión
+### 1.4 Comportamiento de una sucesión
 
 Al estudiar una sucesión asociada a un fenómeno científico, no solamente nos interesa calcular sus términos. También queremos entender su comportamiento.
 
@@ -205,7 +203,7 @@ La identificación de estos comportamientos será fundamental para interpretar m
 
 ## 2. Sucesiones recurrentes
 
-### ¿Qué es una sucesión recurrente?
+### 2.1 ¿Qué es una sucesión recurrente?
 
 En muchos modelos científicos no conocemos directamente una fórmula para $x_n$. En cambio, conocemos una regla que permite obtener el estado siguiente a partir del estado actual.
 
@@ -262,6 +260,7 @@ $$
 La regla de evolución y la condición inicial determinan completamente la trayectoria.
 
 <br>
+
 #### Ejemplo: crecimiento financiero
 
 Supongamos que una inversión inicial es $P_0$ y que cada periodo aumenta en una tasa $r$.
