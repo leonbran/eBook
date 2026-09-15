@@ -92,7 +92,7 @@ Esta interpretación convierte una sucesión matemática en una descripción de 
 
 Es importante notar que el índice $n$ no necesariamente representa años. Puede representar horas, días, generaciones, periodos financieros, pasos computacionales o cualquier otra unidad temporal apropiada para el problema.
 
-<br> 
+
 
 ### 1.2 Sucesiones definidas explícitamente
 
