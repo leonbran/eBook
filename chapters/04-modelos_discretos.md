@@ -41,7 +41,7 @@ La idea central será que una regla aparentemente sencilla de evolución puede g
 
 ## 1. Fundamentos matemáticos: sucesiones
 
- 
+<br> 
 
 ### **1.1 ¿Qué son las sucesiones?**
 
@@ -87,7 +87,7 @@ Esta interpretación convierte una sucesión matemática en una descripción de 
 
 Es importante notar que el índice $n$ no necesariamente representa años. Puede representar horas, días, generaciones, periodos financieros, pasos computacionales o cualquier otra unidad temporal apropiada para el problema.
 
-<br><br>
+<br> 
 
 ### 1.2 Sucesiones definidas explícitamente
  
@@ -121,7 +121,7 @@ $$
 
 Las fórmulas explícitas son particularmente útiles cuando se desea estudiar el comportamiento de una sucesión sin tener que calcular todos sus términos anteriores.
 
-<br><br>
+<br> 
 
 ### 1.3 Sucesiones como modelos de evolución 
  
@@ -158,7 +158,7 @@ Este ejemplo muestra que una sucesión puede representar mucho más que una list
 
 También muestra una diferencia importante entre una **observación** y un **modelo**. Si medimos experimentalmente la población cada hora, obtenemos datos. Si suponemos que la población se duplica exactamente en cada intervalo, estamos construyendo un modelo que intenta explicar o aproximar esos datos.
 
-<br><br>
+<br> 
 
 ### 1.4 Comportamiento de una sucesión
 
@@ -215,7 +215,7 @@ La identificación de estos comportamientos será fundamental para interpretar m
 
 ## 2. Sucesiones recurrentes
 
- 
+<br> 
 
 ### 2.1 ¿Qué es una sucesión recurrente?
 
@@ -273,7 +273,7 @@ $$
 
 La regla de evolución y la condición inicial determinan completamente la trayectoria.
 
-<br><br>
+<br>
 
 ####  Ejemplo: crecimiento financiero 
 
@@ -332,7 +332,8 @@ $$
 
 Este modelo permite observar una característica importante del crecimiento compuesto: el incremento absoluto aumenta con el tiempo aunque la tasa porcentual permanezca constante.
 
-<br><br>
+<br> 
+
 #### Ejemplo: reproducción de una población
  
 
