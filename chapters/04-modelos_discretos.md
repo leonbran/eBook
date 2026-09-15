@@ -122,6 +122,7 @@ Las fórmulas explícitas son particularmente útiles cuando se desea estudiar e
 <br>
 
 ### 1.3 Sucesiones como modelos de evolución 
+<br>
 
 Consideremos una población bacteriana que inicialmente contiene $100$ bacterias y que se duplica cada hora.
 
