@@ -334,7 +334,7 @@ $$
 
 Este modelo permite observar una característica importante del crecimiento compuesto: el incremento absoluto aumenta con el tiempo aunque la tasa porcentual permanezca constante.
 
-<br> 
+
 
 + #### Ejemplo: reproducción de una población
  
