@@ -44,6 +44,7 @@ La idea central será que una regla aparentemente sencilla de evolución puede g
 <br> 
 
 ### **1.1 ¿Qué son las sucesiones?**
+<br> 
 
 Una sucesión es una lista ordenada de números
 
@@ -90,7 +91,7 @@ Es importante notar que el índice $n$ no necesariamente representa años. Puede
 <br> 
 
 ### 1.2 Sucesiones definidas explícitamente
- 
+<br>  
 
 Una sucesión puede definirse mediante una fórmula que permite calcular directamente cualquier término.
 
@@ -275,8 +276,8 @@ La regla de evolución y la condición inicial determinan completamente la traye
 
 <br>
 
-####  Ejemplo: crecimiento financiero 
-
+#### - Ejemplo: crecimiento financiero 
+<br> 
 
 Supongamos que una inversión inicial es $P_0$ y que cada periodo aumenta en una tasa $r$.
 
