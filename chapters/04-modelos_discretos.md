@@ -41,7 +41,7 @@ La idea central será que una regla aparentemente sencilla de evolución puede g
 
 ## 1. Fundamentos matemáticos: sucesiones
 
-###  ¿Qué son las sucesiones?
+### 1.1 ¿Qué son las sucesiones?
 
 Una sucesión es una lista ordenada de números
 
@@ -85,6 +85,7 @@ Esta interpretación convierte una sucesión matemática en una descripción de 
 
 Es importante notar que el índice $n$ no necesariamente representa años. Puede representar horas, días, generaciones, periodos financieros, pasos computacionales o cualquier otra unidad temporal apropiada para el problema.
 
+<br>
 ###  Sucesiones definidas explícitamente
 
 Una sucesión puede definirse mediante una fórmula que permite calcular directamente cualquier término.
@@ -259,6 +260,7 @@ $$
 
 La regla de evolución y la condición inicial determinan completamente la trayectoria.
 
+<br>
 #### Ejemplo: crecimiento financiero
 
 Supongamos que una inversión inicial es $P_0$ y que cada periodo aumenta en una tasa $r$.
