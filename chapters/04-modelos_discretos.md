@@ -1,3 +1,8 @@
+---
+downloads: []
+number_sections: true
+---
+
 # Modelos de cambio discreto
 
 En muchos fenómenos científicos, el estado de un sistema no se observa de manera continua, sino en instantes separados de tiempo. Por ejemplo, podemos registrar una población una vez por año, el número de individuos de una colonia bacteriana cada hora, la concentración de una sustancia cada minuto o el número de personas infectadas al final de cada día.
@@ -39,11 +44,11 @@ La idea central será que una regla aparentemente sencilla de evolución puede g
 
  <br><br>
 
-## 1. Fundamentos matemáticos: sucesiones
+## Fundamentos matemáticos: sucesiones
 
 <br> 
 
-### **1.1 ¿Qué son las sucesiones?** 
+### ¿Qué son las sucesiones?
 
 Una sucesión es una lista ordenada de números
 
