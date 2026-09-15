@@ -116,7 +116,7 @@ $$
 
 Las fórmulas explícitas son particularmente útiles cuando se desea estudiar el comportamiento de una sucesión sin tener que calcular todos sus términos anteriores.
 
-### Sucesiones como modelos de evolución
+### **Sucesiones como modelos de evolución**
 
 Consideremos una población bacteriana que inicialmente contiene $100$ bacterias y que se duplica cada hora.
 
