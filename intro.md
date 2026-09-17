@@ -5,7 +5,6 @@ downloads: []
 # Generalidades del curso
 
 
-
 Las matemáticas permiten construir representaciones de fenómenos y sistemas presentes en la naturaleza, la ciencia, la ingeniería, la economía y la sociedad. El **modelamiento matemático** consiste en establecer conexiones entre estos fenómenos y estructuras matemáticas que permitan describirlos, analizarlos y comprenderlos. Un modelo no es una copia exacta de la realidad, sino una **representación simplificada**, construida a partir de determinados supuestos para capturar los aspectos relevantes de un fenómeno y responder preguntas concretas. Por ello, modelar implica identificar variables, establecer relaciones, formular supuestos, estimar parámetros y analizar las consecuencias del modelo.
 
 > **Modelar es simplificar para comprender.**
@@ -28,79 +27,95 @@ Al finalizar el curso, se espera que el estudiante pueda:
 
 ## Estructura del curso
 
-El curso está organizado en 7 unidades. Estas unidades presentan una progresión desde la construcción básica de modelos hasta la incorporación de dinámica e incertidumbre. A continuación describimos brevemente la temática de cada unidad.
+El curso está organizado en seis unidades. Estas unidades presentan una progresión desde las herramientas computacionales básicas y la construcción de modelos a partir de datos, hasta el estudio de sistemas dinámicos y modelos que incorporan incertidumbre.
+
+<br>
+
+### 1. Introducción al modelamiento matemático
+
+El primer capítulo presenta los conceptos fundamentales del modelamiento matemático. Se discute qué es un modelo matemático, cuáles son sus principales componentes y cómo pueden clasificarse los modelos. En particular, se consideran las diferencias entre modelos deterministas y estocásticos, así como entre modelos discretos y continuos.
+
+También se presenta un proceso general para la construcción de modelos matemáticos. Este proceso no se plantea como una secuencia rígida de pasos, sino como un proceso iterativo, en el que los supuestos, parámetros y relaciones matemáticas pueden modificarse a medida que se obtiene nueva información sobre el fenómeno estudiado.
+
+Finalmente, se introduce el papel de la programación científica como herramienta para la exploración, análisis y simulación de modelos.
+
+La pregunta que guiará esta unidad será:
+
+> **¿Cómo podemos construir un modelo matemático que represente de manera adecuada un fenómeno y nos permita comprender y analizar su comportamiento?**
 
 
 
+### Unidad 2. Herramientas computacionales
 
-### Unidad 1. Elementos de programación
+Comenzaremos desarrollando las herramientas computacionales necesarias para trabajar con modelos matemáticos. Aprenderemos a diseñar algoritmos, implementar procedimientos en Python, trabajar con datos y utilizar representaciones gráficas para explorar resultados.
 
-Introduciremos las herramientas computacionales necesarias para implementar y explorar modelos matemáticos. Mediante **Python** y **Google Colab**, desarrollaremos habilidades básicas de programación, cálculo numérico, manejo de datos y visualización.
+La programación se presentará desde una perspectiva orientada al modelamiento, de manera que cada herramienta computacional pueda utilizarse posteriormente en la construcción, análisis y simulación de modelos.
 
-**La pregunta clave de esta unidad es:**
+La pregunta fundamental de esta unidad será:
 
-> **¿Cómo podemos utilizar un computador para construir, explorar y comprender un modelo matemático?**
-
-
-
-### Unidad 2. Introducción al modelamiento matemático
-
-Estudiaremos qué es un modelo matemático y cómo se construye a partir de un fenómeno. Analizaremos el papel de las variables, los parámetros y los supuestos, así como los procesos de calibración y validación.
-
-**La pregunta clave de esta unidad es:**
-
-> **¿Cómo podemos transformar una pregunta sobre un fenómeno en un problema matemático?**
+> **¿Cómo podemos utilizar la programación para explorar y analizar modelos matemáticos?**
 
 
-### Unidad 3. Modelos por regresión
 
-Estudiaremos modelos construidos a partir de datos. Introduciremos la regresión lineal y algunas de sus extensiones, utilizando mínimos cuadrados y herramientas de optimización para estimar parámetros y evaluar la capacidad del modelo para describir y predecir los datos.
+### Unidad 3. Modelos por ajuste de datos
 
-**La pregunta clave de esta unidad es:**
+En esta unidad estudiaremos modelos construidos a partir de datos. Introduciremos diferentes técnicas de ajuste y regresión para estimar los parámetros de un modelo a partir de observaciones.
+
+Además de construir modelos, aprenderemos a evaluar su capacidad para describir los datos y a distinguir entre ajuste, interpolación, predicción y extrapolación.
+
+La pregunta central será:
 
 > **¿Cómo podemos construir un modelo matemático a partir de datos?**
 
 
 
-### Unidad 4. Modelos discretos
+### Unidad 4. Modelos de cambio discreto
 
-Estudiaremos sistemas cuyo estado evoluciona en pasos discretos mediante **ecuaciones en diferencias**. Analizaremos modelos de crecimiento y poblacionales, así como conceptos fundamentales de sistemas dinámicos discretos, incluyendo equilibrio, estabilidad, bifurcaciones y caos.
+Muchos fenómenos involucran sistemas cuyo estado cambia con el tiempo. Cuando consideramos el tiempo como una variable discreta, podemos describir esta evolución mediante **ecuaciones en diferencias**.
 
-**La pregunta clave de esta unidad es:**
+Estudiaremos modelos de crecimiento, modelos poblacionales y sistemas dinámicos discretos. Analizaremos conceptos como puntos de equilibrio, estabilidad y comportamiento caótico, utilizando herramientas gráficas y computacionales para explorar la evolución de los sistemas.
+
+La pregunta que guiará esta unidad será:
 
 > **¿Cómo evoluciona un sistema cuando observamos su estado paso a paso?**
 
 
 
-### Unidad 5. Modelos continuos
+### Unidad 5. Modelos de cambio continuo
 
-Estudiaremos sistemas cuya evolución se describe mediante **ecuaciones diferenciales ordinarias**. Analizaremos modelos de crecimiento y decaimiento y sistemas de ecuaciones diferenciales, combinando herramientas de análisis cualitativo y métodos numéricos.
+En esta unidad pasaremos de una descripción discreta del tiempo a una descripción continua. Las **ecuaciones diferenciales ordinarias** proporcionan un lenguaje natural para modelar sistemas en los que las tasas de cambio determinan su evolución.
 
-**La pregunta clave de esta unidad es:**
+Estudiaremos sistemas de ecuaciones diferenciales y modelos provenientes de diferentes áreas de aplicación. Combinaremos el análisis cualitativo con métodos numéricos para aproximar soluciones y explorar el comportamiento de los sistemas.
+
+La pregunta central será:
 
 > **¿Cómo podemos describir matemáticamente la evolución continua de un sistema?**
 
 
 
-### Unidad 6. Modelos de Markov
+### Unidad 6. Modelos estocásticos de Poisson
 
-Estudiaremos una clase de modelos estocásticos en los que la evolución de un sistema se describe mediante transiciones aleatorias entre estados. Introduciremos las cadenas de Markov y utilizaremos simulaciones para analizar su comportamiento y estudiar su evolución a largo plazo.
+Hasta este punto, los modelos estudiados describen fenómenos cuyo comportamiento puede determinarse a partir de las condiciones del sistema y de sus parámetros. Sin embargo, muchos fenómenos presentan variabilidad e incertidumbre inherentes.
 
-**La pregunta clave de esta unidad es:**
+En esta unidad introduciremos los modelos estocásticos  a partir de variables aleatorias y distribuciones de probabilidad. Estudiaremos la distribución de Poisson como una herramienta para modelar el número de eventos que ocurren durante un intervalo de tiempo o espacio, y analizaremos su relación con la distribución binomial.
 
-> **¿Cómo podemos modelar la evolución de un sistema cuando existe incertidumbre en sus transiciones?**
+La pregunta fundamental será:
 
-
-### Unidad 7. Modelos de Poisson
-
-Estudiaremos modelos para describir la **ocurrencia aleatoria de eventos** y su conteo durante determinados intervalos de tiempo o espacio. Introduciremos la distribución y el proceso de Poisson, la estimación de parámetros y la simulación computacional, con aplicaciones a fenómenos reales.
-
-**La pregunta clave de esta unidad es:**
-
-> **¿Cómo podemos modelar y predecir la ocurrencia de eventos aleatorios?**
+> **¿Cómo podemos modelar matemáticamente la ocurrencia aleatoria de eventos?**
 
 
-<br>
+
+### Unidad 7. Modelos estocásticos de Markov
+
+La incertidumbre no solo aparece en el número de eventos que ocurren, sino también en la evolución temporal de un sistema. En muchos fenómenos, el estado futuro depende del estado actual y existe una cierta probabilidad de pasar de un estado a otro.
+
+En esta unidad estudiaremos las **cadenas de Markov** como modelos para describir sistemas que evolucionan entre diferentes estados. Analizaremos matrices de transición, trayectorias, distribuciones de estado y simulación. Posteriormente introduciremos las **cadenas de Markov ocultas** y el algoritmo de Viterbi, que permiten inferir estados que no pueden observarse directamente.
+
+La pregunta central será:
+
+> **¿Cómo podemos modelar la evolución de un sistema cuando el cambio entre sus estados es incierto?**
+
+
 
 
 ## Sobre estas notas de clase
