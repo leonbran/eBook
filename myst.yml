@@ -2,7 +2,6 @@ version: 1
 
 project:
   title: Introducción al Modelamiento Matemático
-
   authors:
     - name: Leon Escobar-Diaz
       url: https://sites.google.com/view/leonescobar
@@ -14,7 +13,7 @@ project:
     - id: mi-depto
       institution: Departamento de Matemáticas, Univalle
       url: https://matematicas.univalle.edu.co/
-        
+
   toc:
     - file: intro.md
     - file: chapters/01_introduccion_al_modelamiento.ipynb
@@ -23,13 +22,13 @@ project:
     - file: chapters/04_modelos_de_cambios_discretos.ipynb
     - file: chapters/05_Modelos_de_cambio_continuo.ipynb
     - file: chapters/06_Modelos_de_poisson.ipynb
-    - file: chapters/07_Modelo_estocasticos_de_Markov.ipynb  
+    - file: chapters/07_Modelo_estocasticos_de_Markov.ipynb
 
 site:
   template: book-theme
   options:
     logo: logo_eBook2.jpg
     logo_text: Introducción al Modelamiento Matemático
-    downloads: false
+ 
 
     
