@@ -26,15 +26,6 @@ project:
 
 site:
   template: book-theme
-  nav:
-    - file: intro.md
-    - file: chapters/01_introduccion_al_modelamiento.ipynb
-    - file: chapters/02_elementos_de_programacion.ipynb
-    - file: chapters/03_modelos_por_ajuste.ipynb
-    - file: chapters/04_modelos_de_cambios_discretos.ipynb
-    - file: chapters/05_Modelos_de_cambio_continuo.ipynb
-    - file: chapters/06_Modelos_de_poisson.ipynb
-    - file: chapters/07_Modelo_estocasticos_de_Markov.ipynb
   options:
     logo: logo_eBook2.jpg
     logo_text: Introducción al Modelamiento Matemático
