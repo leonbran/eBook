@@ -22,8 +22,12 @@ project:
     - file: chapters/03_modelos_por_ajuste.ipynb
     - file: chapters/04_modelos_de_cambios_discretos.ipynb
     - file: chapters/05_Modelos_de_cambio_continuo.ipynb
+<<<<<<< HEAD
     - file: chapters/06_Modelos_de_poisson.ipynb
     - file: chapters/07_Modelo_estocasticos_de_Markov.ipynb  
+=======
+  
+>>>>>>> parent of 5570398 (Update myst.yml)
 
 site:
   template: book-theme
