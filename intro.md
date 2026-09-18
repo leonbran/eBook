@@ -1,5 +1,3 @@
-
-
 # Generalidades del curso
 
 
