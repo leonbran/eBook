@@ -1,6 +1,4 @@
----
-downloads: []
----
+
 
 # Generalidades del curso
 
