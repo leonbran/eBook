@@ -15,8 +15,7 @@ project:
       institution: Departamento de Matemáticas, Univalle
       url: https://matematicas.univalle.edu.co/
         
-  toc:
-    - file: intro.md
+  toc:    
     - file: chapters/01_introduccion_al_modelamiento.ipynb
     - file: chapters/02_elementos_de_programacion.ipynb
     - file: chapters/03_modelos_por_ajuste.ipynb
